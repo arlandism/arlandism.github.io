@@ -1,0 +1,90 @@
+---
+layout: post
+---
+<p>
+Recently, I began work on a <a href="https://github.com/arlandism/transaction-koans">set of koans</a> designed to teach some of the nuances around SQL transaction isolation levels. Arbitrarily, I decided to start with Postgres.
+</p>
+
+<h3>Repeatable Read</h3>
+The SQL standard defines repeatable reads such that multiple reads of the same data within the same transaction will yield the same results, assuming said transaction doesn't update those results itself. Let me demonstrate this with an example. I'll use two separate database consoles to obtain multiple connections and simulate concurrent transactions.
+
+<br />
+<div>
+T1:
+{% highlight sql %}
+transaction_koans=# start transaction isolation level repeatable read;
+START TRANSACTION
+transaction_koans=# select * from people where name = 'arlandis';
+   name   | age
+----------+-----
+ arlandis |  39
+(1 row)
+{% endhighlight %}
+</div>
+
+<br />
+<div>
+T2:
+{% highlight sql %}
+transaction_koans=# start transaction;
+START TRANSACTION
+transaction_koans=# update people set age = 23 where name = 'arlandis';
+UPDATE 1
+transaction_koans=# commit;
+COMMIT
+{% endhighlight %}
+</div>
+
+<br />
+T3:
+<div>
+{% highlight sql %}
+transaction_koans=# select * from people where name = 'arlandis';
+   name   | age
+----------+-----
+ arlandis |  39
+(1 row)
+{% endhighlight %}
+</div>
+
+Subsequent reads in our first transaction are completely ignorant of the update made by another client. Notably, repeatable read is still vulnerable to the <a href="http://en.wikipedia.org/wiki/Isolation_%28database_systems%29#Phantom_reads">phantom read phenomenon</a> but that's beyond the scope of this post.
+
+<br />
+<br />
+I came across an <a href="http://www.postgresql.org/docs/9.1/static/transaction-iso.html#XACT-REPEATABLE-READ">interesting error</a> mentioned in the Postgres docs and figured I ought to try and trigger it. After I got some boilerplate jdbc code written, I got around to scheduling the conflicting writes.
+
+<div>
+{% highlight clojure %}
+(testing "repeatable-read is handy, but sometimes we don't care about serialization"
+  (let [conn-one (adapter/get-connection db-spec)
+        conn-two (adapter/get-connection db-spec)]
+    (.setAutoCommit conn-one false)
+    (.setAutoCommit conn-two false)
+    (.setTransactionIsolation conn-two java.sql.Connection/TRANSACTION_REPEATABLE_READ) ; fix me
+    (.execute
+      (adapter/prepare-statement conn-one "update people set age = 27 where name = 'arlandis'"))
+    ; attach a callback to the second thread so that we can be closer to guaranteeing
+    ; it's attempted a lock grab before the first transaction commits,
+    ; triggering the serializable error
+    (def t2-lock-attempt (promise))
+    (def t2 (future
+              (deliver t2-lock-attempt "done")
+              (.execute
+                (adapter/prepare-statement
+                  conn-two
+                  "update people set age = 25 where name = 'arlandis'"))))
+    @t2-lock-attempt ; block for t2
+    (.commit conn-one)
+    (try
+      @t2
+      (.commit conn-two)
+      (catch Exception e)
+      (finally
+        (.close conn-one)
+        (.close conn-two)
+        (is (= 25 (age-of-person "arlandis")))))))
+{% endhighlight %}
+</div>
+
+<br />
+I thought this was really cool because it finally motivated me to learn more about Clojure's concurrency primitives. In this example, I make use of "future" - execute behavior in another thread, and "promise" - bind a var that you can attach behavior to later. Here, by deferencing the promise I block the main thread until right before we try to execute the conflicting write in t2. This works because "a repeatable read transaction cannot modify or lock rows changed by other transactions after the repeatable read transaction began". The point of this exercise is to try to get the developer to change the transaction level to something that would always let t2 win. Unfortunately, this isn't deterministic since there's no *guarantee* that t2 will attempt its update before t1 commits. I couldn't figure out how to do that, but at least this has worked for me every time I've run it.
