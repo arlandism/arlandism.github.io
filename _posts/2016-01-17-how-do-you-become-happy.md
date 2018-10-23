@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: article
 title: How Do You Become Happy?
 date: 2016-01-17 21:33:00
 categories: ideas

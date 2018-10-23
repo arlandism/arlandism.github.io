@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: article
 title: Self Study
 date: 2017-10-14 13:26:00
 categories: programming

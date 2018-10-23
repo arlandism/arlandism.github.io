@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: article
 title: Computer Architecture (CS 61C) Session 0 Notes
 date: 2017-10-14 13:26:00
 categories: programming

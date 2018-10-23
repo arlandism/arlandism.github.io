@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: article
 title: When Do We Ship
 date: 2015-08-24 20:23:40
 categories: business

@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: article
 title: Nand 2 Tetris, Retrospective, Part 1
 date: 2017-10-14 13:26:00
 categories: programming

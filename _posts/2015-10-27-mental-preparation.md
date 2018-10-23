@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: article
 title: Mental Preparation
 date: 2015-10-27 21:43:00
 categories: business
