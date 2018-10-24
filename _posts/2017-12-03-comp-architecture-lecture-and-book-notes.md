@@ -7,7 +7,7 @@ tags:
 - programming, learning
 ---
 
-I'm still following the curriculum outline [here](https://teachyourselfcs.com/#architecture) and since I just [finished Nand 2 Tetris](http://arlandism.github.io/programming/2017/10/14/nand-2-tetris-part-1-retrospective/), I got to start on Berkeley's Great Ideas in Computer Architecture Course. Below are my notes from the first lecture and reading from [Patterson and Hennessy](https://www.amazon.com/Computer-Organization-Design-MIPS-Fifth/dp/0124077269).
+I'm still following the curriculum outline [here](https://teachyourselfcs.com/#architecture) and since I just [finished Nand 2 Tetris](/programming/2017/10/14/nand-2-tetris-part-1-retrospective/), I got to start on Berkeley's Great Ideas in Computer Architecture Course. Below are my notes from the first lecture and reading from [Patterson and Hennessy](https://www.amazon.com/Computer-Organization-Design-MIPS-Fifth/dp/0124077269).
 
 # Lecture
 
@@ -16,7 +16,7 @@ I'm still following the curriculum outline [here](https://teachyourselfcs.com/#a
 - Parallelism goes all the way down the stack. You could have a computer that services parallel requests (e.g. 2 users searching at once), that delegates to parallel threads, with cpus running parallel instructions via pipelining, that are fetching pieces of data in parallel and all of this is happening in the context of hardware gates that operate in parallel.
 
 ## Catalogue of the great ideas in computer architecture
-- Abstraction: Not needing to worry about how the thing below you is implemented, only its interface. I touch on how this blew my mind at the hardware level in my [last post](http://arlandism.github.io/programming/2017/10/14/nand-2-tetris-part-1-retrospective/).
+- Abstraction: Not needing to worry about how the thing below you is implemented, only its interface. I touch on how this blew my mind at the hardware level in my [last post](/programming/2017/10/14/nand-2-tetris-part-1-retrospective/).
 
 - Moore's Law: This is the prediction that the number of transistors that you could fit on a chip would approximately double every 18 months. As a consequence of this, it was historically important for people architecting computing systems to factor this into their timelines. You can't design things in such a way that they don't take full advantage of new hardware capabilities by the time they're released. I wonder if there's an analogue here in software? The lecturer starts to note how Moore's law seems to be fading since the transistors are getting so small that it takes longer to get them all on the chip which in turn makes the process more expensive.
 
