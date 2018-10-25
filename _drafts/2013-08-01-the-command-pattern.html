@@ -1,0 +1,12 @@
+---
+layout: post
+title: The Command Pattern
+date: '2013-08-01T21:45:00.001-07:00'
+author: aml
+tags: 
+modified_time: '2013-08-01T21:45:06.739-07:00'
+blogger_id: tag:blogger.com,1999:blog-1730093662423317857.post-8310809916886034757
+blogger_orig_url: https://immutablearlandis.blogspot.com/2013/08/the-command-pattern.html
+---
+
+I've been reading through Agile Software Development: Principles, Patterns, and Practices and I've just gotten to the Payroll case study where Uncle Bob will be highlighting several design patterns and their applicability in the real-world. First up we have the Command pattern.<br /><br />So, let's start off with an interface. I should also note that this "interface" is just for show. I'll be using Ruby so there's no need for explicit interface implementation.<br /><br /><br /><pre class="brush:ruby" name="code">class Command<br /><br />  def do<br />  end<br /><br />end<br /></pre><br />Well that wasn't very complex. In the wild, the pattern is used when it's necessary to implement some "undo" functionality.

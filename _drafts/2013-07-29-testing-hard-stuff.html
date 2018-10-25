@@ -1,0 +1,12 @@
+---
+layout: post
+title: Testing the Hard Stuff
+date: '2013-07-29T14:33:00.002-07:00'
+author: aml
+tags: 
+modified_time: '2013-07-29T14:33:59.542-07:00'
+blogger_id: tag:blogger.com,1999:blog-1730093662423317857.post-3383355589802156383
+blogger_orig_url: https://immutablearlandis.blogspot.com/2013/07/testing-hard-stuff.html
+---
+
+I promised to do a follow-up Ruby post but I decided to digress a bit and talk about a pretty important topic that's come up. That topic is unit testing. Specifically, that topic is testing things that are really hard to test. There's nothing better than a real-world example, so here goes:<br /><br /><br /><pre class="brush:ruby" name="code">class Socket<br /><br />  attr_reader :host, :port, :connected<br /><br />  def initialize(host,port)<br />    @host = host<br />    @port = port<br />    @connected = false<br />  end<br /><br />  def connect!<br />    @socket = TCPSocket.open(@host,@port)<br />    @socket.connect<br />    @connected = true<br />  end<br /><br />  def data<br />    received_data = @socket.gets<br />  end<br /><br />  def send(to_send)<br />    @socket.puts(to_send)<br />  end<br /><br />  def close!<br />    @socket.close<br />    @connected = false<br />  end<br />end<br /></pre><br />So this class isn't really hard to understand. It's just a wrapper around Ruby's own implementation of a socket; which is a wrapper around C's implementation, which is a wrapper around Unix's implementation. Socketception!<br /><br />How do you test something like this? Scratch that! It's not that hard to test. You can instantiate a connection to another socket and just assert that the data you sent went through. But, is that a good way to test? I couldn't come up with a better way, but I don't think that my solution is that great. It feels more like an integration test than a unit test. I'm checking that the data went through and came out the other end.<br /><br /><br /><pre class="brush:ruby" name="code">class ConnectionManager<br /><br />  def connect!<br />    @socket = TCPSocket.open(@host,@port)<br />    @socket.connect<br />    @connected = true<br />  end<br /><br />  def close!<br />    @socket.close<br />    @connected = false<br />  end<br /><br />end<br /></pre>

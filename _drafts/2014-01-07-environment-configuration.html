@@ -1,0 +1,12 @@
+---
+layout: post
+title: Environment Configuration
+date: '2014-01-07T21:15:00.000-08:00'
+author: aml
+tags: 
+modified_time: '2014-01-07T21:15:30.725-08:00'
+blogger_id: tag:blogger.com,1999:blog-1730093662423317857.post-870298326504506576
+blogger_orig_url: https://immutablearlandis.blogspot.com/2014/01/environment-configuration.html
+---
+
+The client app I'm currently working on began at 8th Light, which means the team has had the opportunity to play with some non-standard conventions. One of these unorthodox experiments, architected by Dave Moore, is the way we configure the app's environment.<br /><br />Typically, environments are configured via the use of config files<br /><br />We have two separate environment "mains". In these mains, we configure everything about the app in the file, blah, blah, blah. This is more extensible than traditional mechanism, but it also harder to get started. You have two app configurations essentially, versus having just some api keys stored in a config.clj file somewhere.
