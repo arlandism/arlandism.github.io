@@ -4,7 +4,8 @@ title: Nand 2 Tetris, Retrospective, Part 1
 date: 2017-10-14 13:26:00
 categories: programming
 tags:
-- programming, learning
+- programming
+- learning
 ---
 
 I just wrapped up Chapters 1-6 of The Elements of Computing Systems and learned a ton. The book takes you from Nand gates all the way up to a fully functioning Tetris game running on software and hardware you built (the hardware is run on an emulator). By the end of Chapter 6 you've implemented some basic gates, an ALU, stateful chips like Registers and RAM, a CPU, and a pseudo "Computer" with memory-mapped keyboard and screen peripherals. As a non-credentialed programmer, reading this book and opening Pandora's box was really enlightening. If you've been programming long enough, you've heard something akin to "It's all 0's and 1'", but for me it was never really clear what that meant. I had this vague idea that something somewhere gobbled up these numbers and did something meaningful with them. Well, now I've written my own gobbler and seen it in action. Listed below are some personal highlights for me.

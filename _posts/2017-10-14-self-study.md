@@ -4,7 +4,8 @@ title: Self Study
 date: 2017-10-14 13:26:00
 categories: programming
 tags:
-- programming, learning
+- programming
+- learning
 ---
 
 I'm a "self-taught" programmer so I run into a lot of imposter syndrome when reading blog posts that touch areas I've never had exposure to. So, I'm making a list of computer science areas that I want to tackle in the next few months in the hopes that it'll provide sufficient motivation to actually get through the list.

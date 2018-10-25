@@ -4,7 +4,8 @@ title: Computer Architecture (CS 61C) Session 0 Notes
 date: 2017-10-14 13:26:00
 categories: programming
 tags:
-- programming, learning
+- programming
+- learning
 ---
 
 I'm still following the curriculum outline [here](https://teachyourselfcs.com/#architecture) and since I just [finished Nand 2 Tetris](/programming/2017/10/14/nand-2-tetris-part-1-retrospective.html), I got to start on Berkeley's Great Ideas in Computer Architecture Course. Below are my notes from the first lecture and reading from [Patterson and Hennessy](https://www.amazon.com/Computer-Organization-Design-MIPS-Fifth/dp/0124077269).
