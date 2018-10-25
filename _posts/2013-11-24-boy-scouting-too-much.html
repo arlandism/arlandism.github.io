@@ -1,0 +1,12 @@
+---
+layout: post
+title: Boy Scouting Too Much
+date: '2013-11-24T20:53:00.000-08:00'
+author: aml
+tags: 
+modified_time: '2013-11-24T20:53:30.827-08:00'
+blogger_id: tag:blogger.com,1999:blog-1730093662423317857.post-7695042699940969009
+blogger_orig_url: https://immutablearlandis.blogspot.com/2013/11/boy-scouting-too-much.html
+---
+
+This week, during my Dojo Dashboard stories, I struggled to remedy the tension between completing user stories and effectively adhering to the <a href="http://pragmaticcraftsman.com/2011/03/the-boy-scout-rule/" target="_blank">boy scout rule</a>.<br /><br />Often, I would stumble onto a function with many lines of implementation, intermingled responsibility, or lack of clarity. The boy scout in me wanted desperately to clean every piece of dirty code that I found. Unfortunately, sometimes the code was untested or my changes rippled into another namespace. This slowed me and my pair's momentum down. Fortunately, he was there to keep me grounded and stop me when things were taking too long.<br /><br />The biggest lesson I took from this experience is that there's a limit to how much code you should change. While "boyscouting", I would often venture into other namespaces because of some connection I saw or thought maybe I could factor out some commonality. In my mind, the next person reviews the code, realizes that I was the last person to touch it, and blames me if it's not up to snuff. Trying to refactor a bunch of code that doesn't directly impact your story isn't good for business though. I also learned of "git blame" which shows the last person to touch specific pieces of code, so that eased my mind a bit.

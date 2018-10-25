@@ -1,0 +1,12 @@
+---
+layout: post
+title: Back to Basics
+date: '2013-08-31T13:57:00.002-07:00'
+author: aml
+tags: 
+modified_time: '2013-08-31T13:58:42.529-07:00'
+blogger_id: tag:blogger.com,1999:blog-1730093662423317857.post-3161781742912484216
+blogger_orig_url: https://immutablearlandis.blogspot.com/2013/08/a-couple-of-blog-posts-ago-i-performed.html
+---
+
+<a href="http://immutablearlandis.blogspot.com/2013/08/fighting-framework-good-design-in-web.html" target="_blank">A couple of blog posts ago</a>, I performed what I thought would be a pivotal refactor. I managed to push a ton of logic from the controllers down to another layer. It turns out that wasn't the greatest idea. I ended up with a class like this:<br /><br /><pre class="brush:ruby" name="code">class StateManager<br /><br />  def initialize(request,response)<br />    @cookie_manager = CookieManager.new(request,response)<br />    @request = request<br />    @response = response<br />  end<br /></pre><pre class="brush:ruby" name="code"></pre>The StateManager class ended up doing most of the heavy lifting in the application. I was happy with this because I thought it was better than the alternative - having all of the heavy lifting in the controller. This class soon became a monster though. There were cookies being set and retrieved everywhere, not just in the CookieManager class. It got out of hand eventually and forced me to revert back to the state of the application when the controller handled everything. It's still not pretty, but it's much less complicated.<br /><br /><b>Why the StateManager</b><br /><b><br /></b>My initial thoughts behind the conception of the StateManager class was that I needed some additional layer of abstraction between the service layer and the main application. It seemed like a good way to get the logic out of the controller. I think that designing the StateManager was a case where I over-thought design and under-thought the ramifications of the design. I envisioned a complex system where the magic would happen behind a curtain, away from the controller's peering eyes. In hindsight, I think a better approach would've been to refactor my mechanism for managing state in the controller rather than trying to push that management down.

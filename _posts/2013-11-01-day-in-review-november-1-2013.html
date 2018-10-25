@@ -1,0 +1,12 @@
+---
+layout: post
+title: Day In Review - November 1, 2013
+date: '2013-11-01T20:22:00.000-07:00'
+author: aml
+tags: 
+modified_time: '2013-11-01T20:22:22.360-07:00'
+blogger_id: tag:blogger.com,1999:blog-1730093662423317857.post-1350190431767130251
+blogger_orig_url: https://immutablearlandis.blogspot.com/2013/11/day-in-review-november-1-2013.html
+---
+
+Today, I paired with <a href="http://www.8thlight.com/our-team/patrick-gombert" target="_blank">Patrick</a> on an implementation of the raft algorithm described <a href="https://ramcloud.stanford.edu/wiki/download/attachments/11370504/raft.pdf" target="_blank">here</a>, in Clojure.<br /><br />I learned a lot about how distributed systems work and some of the concerns that are being addressed in that community. The raft algorithm tries to solve the problem of keeping a system running in the event that a master database goes out of commission. There are a few special rules about how to handle situations, but the gist of it is if the master goes down, then the slave database with the most up-to-date information takes the mantle.<br /><br />Some of the thought problems we addressed were:<br /><br /><br /><ul><li>Implementing a state machine in Clojure. There are three different states that a database can be in: normal, candidate, and leader. We took some time to jot down what happens in response to a particular event at each state. This is the part we were implementing when we stopped for the day.</li><li>Getting around state assignment. It feels kind of dirty to assign state in a Clojure program. We were trying to figure out how to maintain access to information about the current state of a server without using atoms. We never got around to this part so I'm not sure what our final solution would've looked like.</li></ul><div>Overall, it was a great experience; I learned a lot and it was fun.</div>

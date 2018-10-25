@@ -1,0 +1,12 @@
+---
+layout: post
+title: Creating My Clojure Kata
+date: '2013-08-25T19:24:00.000-07:00'
+author: aml
+tags: 
+modified_time: '2013-08-25T19:24:41.371-07:00'
+blogger_id: tag:blogger.com,1999:blog-1730093662423317857.post-7989742692410321982
+blogger_orig_url: https://immutablearlandis.blogspot.com/2013/08/writing-my-clojure-kata.html
+---
+
+Lately, I've been working on turning my <a href="https://github.com/arlandism/n-body" target="_blank">N-Bodies Clojure code</a> into a kata and I'm finding the task to be extremely difficult. These are some of the main problems I've been facing.<br /><br /><b>Refactoring Clojure</b><br /><b><br /></b>Personally, I find Clojure code difficult to refactor. Sometimes, it seems like eliminating duplication or redundancy often produces more verbose code. I feel like there must be more Clojure-idiomatic ways to do some of the things I'm doing that will clarify the code, but I'm finding it difficult to figure those ways out.<br /><br /><b>Finding a Theme</b><br /><b><br /></b>Good katas should have a theme. I can't think of any theme that my code adheres to. Another apprentice mentioned perhaps going with a <a href="http://en.wikipedia.org/wiki/Function_composition_(computer_science)" target="_blank">functional composition</a> approach, but that doesn't seem like a powerful theme to me since that's pretty much the basis of any Lisp-dialect. <a href="http://en.wikipedia.org/wiki/Top-down_and_bottom-up_design" target="_blank">Top-down design</a> comes to mind since I wrote the high-level tests first, but Sandro already exploited that theme in a <a href="https://vimeo.com/65902219" target="_blank">great Clojure kata performance</a>. I'm hoping that maybe conceiving a theme will guide me as to how to develop the kata but that may just be wishful thinking.<br /><br /><b>Lots O Code</b><br /><b><br /></b>There's way too much code! The source file is just over 80 lines including formatting. That, plus the 205 line spec file, is overwhelming to complete in the ideal 7-10 minute kata time. One of my main goals during the kata development has been to reduce the size and complexity of the code in a way such that the solution comes through clearly at the end, but the code isn't bogged down with meaningless or overly verbose tests. From my perspective, all of my tests seem pretty necessary, which means I need to come up with another strategy, fast!

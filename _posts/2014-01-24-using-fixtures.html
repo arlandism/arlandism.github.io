@@ -1,0 +1,12 @@
+---
+layout: post
+title: Using Data Fixtures
+date: '2014-01-24T19:05:00.001-08:00'
+author: aml
+tags: 
+modified_time: '2014-01-24T19:05:36.390-08:00'
+blogger_id: tag:blogger.com,1999:blog-1730093662423317857.post-9208014370115439050
+blogger_orig_url: https://immutablearlandis.blogspot.com/2014/01/using-fixtures.html
+---
+
+There's an interesting pattern in my current project where we're trying to run tests against some sample API data that we would be receiving in production. The testing approach we're taking is to store the sample API data in a "fixture" file that we import and test against. So far, it's been fairly useful, though I'm really not sure how I feel about the pattern.<br /><br />The pros to this approach are that:<br /><ul><li>you can be relatively sure that the data is accurate by copy-pasting it into a file and making assertions against the data in that file, and</li><li>possibly lengthy and hard-to-read data is stored in a separate file, making it easier to read the tests.</li></ul>Unfortunately, there are various cons to this approach as well. Seeing assertions like this:<br />"<br />(should= "foo" (extracted-data "fixture_data.clj"))<br />"<br />doesn't tell me much about what's happening. If for some reason this test fails I have to scan the "fixture" file and figure out where the problem is; this can be quite the annoyance if there's a lot of data.<br /><br /><b>Conclusion</b><br /><b><br /></b>My current position is in favor of the "fixture" data. I've actually tried to create my own fake data, consistent with the API specification, to assert against and I've been burned by mis-structuring the data. I don't think that the fixture approach is ideal, but it does give me a higher degree of confidence.

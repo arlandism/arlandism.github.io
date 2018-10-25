@@ -1,0 +1,12 @@
+---
+layout: post
+title: Divvying Responsibility
+date: '2013-07-02T13:50:00.001-07:00'
+author: aml
+tags: 
+modified_time: '2013-07-15T07:39:08.994-07:00'
+blogger_id: tag:blogger.com,1999:blog-1730093662423317857.post-7349705980722815735
+blogger_orig_url: https://immutablearlandis.blogspot.com/2013/07/divvying-responsibility.html
+---
+
+One of the hardest things for me to grasp about the SOLID principles is the Single Responsibility Principle. I mean, what exactly comprises a responsibility? For instance, I used to have an AI class that looked like this:<br /><br /><pre class="brush:python" name="code">from minimax import Minimax<br /><br />class ImpossibleAI(object):<br /><br />    def __init__(self,token):<br />        self.token = token<br /><br />    def next_move(self,board):<br />        return Minimax(self.token,6).next_move(board)</pre><br />Obviously, this isn't an SRP violation. But eventually, in order to make the Game class more<br />abstract I had to change the class to this:<br /><br /><pre class="brush:python" name="code">from minimax import Minimax<br />from printer import Printer<br /><br />class ImpossibleAI(object):<br /><br />    def __init__(self,token,display_object=Printer()):<br />        self.token = token<br />        self.display_method = display_object.display<br /><br />    def next_move(self,board):<br />        self.display_method(self.token.capitalize() + "'s turn")<br />        move = Minimax(self.token,6).next_move(board)<br />        self.display_method(self.token + " moves to " + str(move))<br />        return move<br /></pre><br />Now the class knows how to show the moves it makes and takes a display_object in order to display output. To me, this came off as an SRP violation since this "player" class shouldn't have anything to do with displays. Though I suppose that the Game class shouldn't either if we follow that logic. After speaking with another apprentice, I now have the impression that this isn't an SRP violation since all of the functionality encapsulated by the class is related. But, I also think that one could argue a different opinion. The SRP seems a bit subjective in this light.

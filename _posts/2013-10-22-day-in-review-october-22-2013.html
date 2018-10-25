@@ -1,0 +1,12 @@
+---
+layout: post
+title: Day In Review - October 22, 2013
+date: '2013-10-22T19:38:00.002-07:00'
+author: aml
+tags: 
+modified_time: '2013-10-22T19:38:59.409-07:00'
+blogger_id: tag:blogger.com,1999:blog-1730093662423317857.post-631330794085590004
+blogger_orig_url: https://immutablearlandis.blogspot.com/2013/10/day-in-review-october-22-2013.html
+---
+
+I started work on a pretty big feature today and got a bit overwhelmed at the added functionality. My mentor and I discussed a possible refactor yesterday and I decided to give it a shot today. This caused a huge loss in productivity when I ended up digging myself into a hole and trying to reach the light again.<br /><br />What happened was that I got about halfway through the refactor and realized that it wouldn't work because of some type expectations I had in place. One of the drawbacks to using a heavyweight IDE like Intellij is that you let it generate all this code for you to try to get back to green during a refactor and after only a couple of minutes you're pretty entrenched. Using the "undo" command a bunch of times becomes difficult because you've touched multiple files. And if you find yourself without a recent enough commit to revert back to - like I did - then you'll find yourself clawing at dirt in full panic mode.<br /><br />I think my biggest flaw today was not having a new design plan completely in place before the refactor. I just started moving towards what I thought would be an optimal solution without conceptualizing all of the expected types and layers of abstraction that would be hit by the change. I was hoping that moving stuff around would guide me to an ideal solution when I should've already had the new schema in place.<br /><br /><b>Other Things I Could've Done Better</b><br /><b><br /></b>Commit more frequently - When using Vim, I really felt the effects of changing files. Intellij really disconnects me from the process and I often forget to commit. I need to get better at this.<br /><br />Use branches for big changes - This would've been a huge advantage for me today.<br /><br />Maintain composure - When stuff starts to break and there's no failsafe in place I start to panic. I begin to question logical assumptions and frequently doubt myself. I need to figure out a way to get my head on straight during higher stress periods.

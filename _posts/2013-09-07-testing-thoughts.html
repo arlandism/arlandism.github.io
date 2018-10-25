@@ -1,0 +1,12 @@
+---
+layout: post
+title: Testing Thoughts
+date: '2013-09-07T10:33:00.001-07:00'
+author: aml
+tags: 
+modified_time: '2013-09-07T10:33:24.872-07:00'
+blogger_id: tag:blogger.com,1999:blog-1730093662423317857.post-4691737690679577432
+blogger_orig_url: https://immutablearlandis.blogspot.com/2013/09/testing-thoughts.html
+---
+
+I apologize in advance. I realize that many of my posts are about testing, but I think good testing principles are one of the most important things to take away from the apprenticeship.<br /><br />Sometimes, I really struggle with trying to write good tests and evaluating past tests I've written. Gradually, my skills in that area are beginning to improve. I now know that this a bad test.<br /><br /><pre class="brush:ruby" name="code">describe "POST '/move' do<br />  it "hands the game state and configurations to AI" do<br />    post '/config', {:depth =&gt; 10}<br />    current_board_state = {"board" =&gt; {"6" =&gt; "x"},<br />                           "depth" =&gt; "10"}<br />    AI.any_instance.should_receive(:next_move).with(current_board_state)<br />    post '/move', {:player_move =&gt; 6}<br />  end<br />end<br /></pre><br />The main problem with this test is the amount going on. If you have to think hard, or hold a lot of state in your brain, just to reason about what the test is doing then that's probably a sign that it's bad.<br /><br />Unfortunately, I found tests like these riddled throughout my spec file, which forced me to do a refactor to get rid of some of the ugliness. But, I found that test in particular difficult to rework. Sure, there's a ton going on, but it seems like the only way to convey the message I'm trying to get across: We have some information about the game that we need to pass to the AI.<br /><br />I'm struggling to decide if there's a better way to do this. One alternative would be to store this information in the test cookies and show that that's what gets passed in. My only apprehension with this strategy is the fact that I'm then coupled to my application's cookies. If I somehow wanted to change the way I store the game's configurations, say in a class or something, and I wanted to pass information from the storage mechanism to the AI then this test would fail. On the other hand, I don't really see a need to alter the way I store configuration information, so although I'd be coupled to the application's cookies I would be coupled to something with a low likelihood of change. This must be one of those software engineering trade-offs I've heard so much about. :)

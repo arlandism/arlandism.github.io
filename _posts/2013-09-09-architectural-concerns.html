@@ -1,0 +1,12 @@
+---
+layout: post
+title: Feature Work - Planning
+date: '2013-09-09T20:13:00.001-07:00'
+author: aml
+tags: 
+modified_time: '2013-09-09T20:15:15.838-07:00'
+blogger_id: tag:blogger.com,1999:blog-1730093662423317857.post-2631586649488214256
+blogger_orig_url: https://immutablearlandis.blogspot.com/2013/09/architectural-concerns.html
+---
+
+I got a new story today - I have to log all Tic Tac Toe games played to a file along with their move histories. This story presents some interesting challenges and I'm looking forward to tackling them. Here are some of the biggest problems I'm facing with getting the story going:<br /><br /><b>Challenges</b><br /><b><br /></b><br /><ul><li><b>Architecture - </b>I'm finding myself thinking about architecture more and more. It's like one of those things that you start to learn about and suddenly you see chances to use it everywhere. I start to think of my application in terms of "interactors", business objects, and "black-box" services. One thing that I find puzzling about architecture is when you need to start thinking about it. Do you upfront say, "I'm going to need to structure my application this way to prevent these bad things from happening", or is it more gradual. And if it's supposed to be gradual, as I suspect it should be in TDD, what kinds of things do you consider in order to keep from constraining the design where you won't be able to expand it later</li></ul><div><br /></div><ul><li><b>Where to Start - &nbsp;</b>This sort of ties in with the previous concern. It's hard to figure out where to start with a new piece of functionality like this. Sometimes, I get stories where it's really easy to see where to start out at. This isn't one of them. Unfortunately, usually when this happens I end up test-driving a bunch of code that I'm really proud of, only to find out that it does the "wrong" thing. It works great against the test API I wrote; it's just that the test API didn't accurately express the requirements of the application. So one of my biggest hurdles right now is figuring out where to start working.</li></ul><div><br /></div><div><b>Summary</b></div><div><b><br /></b></div><div>Determining good architecture at the start of a new feature can sometimes be difficult. Also, figuring out where to start work on that feature is hard. I'd like to resolve these problems going forward, and I suspect that I'll become a lot more productive (i.e. get stories done faster) once I do.</div>

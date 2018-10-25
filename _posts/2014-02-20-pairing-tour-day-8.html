@@ -1,0 +1,12 @@
+---
+layout: post
+title: Pairing Tour Day 8
+date: '2014-02-20T17:54:00.001-08:00'
+author: aml
+tags: 
+modified_time: '2014-02-20T17:54:11.329-08:00'
+blogger_id: tag:blogger.com,1999:blog-1730093662423317857.post-738671639101678761
+blogger_orig_url: https://immutablearlandis.blogspot.com/2014/02/pairing-tour-day-8.html
+---
+
+<b>Background</b><br /><b><br /></b>Craftsman: Rick Winfrey<br /><br />Rick works on a project comprised of three Rails application that involve heavy user-interaction and lots of data.<br /><br /><b>Summary</b><br /><b><br /></b>To kick things off, Rick showed me around the system a bit so that we could get started on a new story; the story was to add another form action to the administrative section of the application.<br /><br />After failing to successfully setup a remote-pairing session via SSH and Tmux, we decided it'd be best for me to follow along on Rick's computer. We didn't get very far before we were called away to respond to some pull request comments from a reviewer looking over Rick's code. Rick's additions had been great, but there was some existing code that needed to be cleaned up and it seemed like a good opportunity to tackle that job. Unfortunately, the code was pretty hairy. There were lots of hard dependencies and SRP violations present in the code. To make matters worse, the tests were really difficult to understand. The code reviewer just wanted us to make it so we didn't hit the database in the test, but truly cleaning the code would've took at least another day's efforts. By day's end, we managed to get our pull request approved and moved to QA.<br /><br />I really enjoyed pairing with Rick. Fortunately, I decided to make my own toy Rails application a couple of weeks ago, so I wasn't completely lost with all of the magic Rails functionality. I found today enlightening because it exposed me to real-world code that definitely needed some love. The day also highlighted the philosophical differences between 8th Light and some of its clients. There were some notes in the pull request that we didn't totally agree with, but conceded to keep the team happy. I think the concession was largely because of the time pressure and hopefully Rick can make a more formal refactor proposal later.

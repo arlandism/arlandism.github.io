@@ -1,0 +1,12 @@
+---
+layout: post
+title: Building an In-Memory Datastore
+date: '2014-01-08T21:25:00.001-08:00'
+author: aml
+tags: 
+modified_time: '2014-01-08T21:25:11.092-08:00'
+blogger_id: tag:blogger.com,1999:blog-1730093662423317857.post-1457255895034456321
+blogger_orig_url: https://immutablearlandis.blogspot.com/2014/01/building-in-memory-datastore.html
+---
+
+My mentor has commissioned me to come up with the design for an in-memory datastore for some client work we're doing. Before, we were using hyperion which comes with a "with-memory-datastore" function, but we've made the switch the korma so we need a new solution.<br /><br />Conceptually, it seems fairly straightforward. The ORM (can we call it that in a functional language?) abstracts away database concerns. Somewhere in the application, there has to be an establishment of logic needed for database connection. A function like, "with-memory-datastore" could probably just step on this database connection and swap out some hash-map implementation.<br /><br />The problem is that this seems really hard to do without writing a whole wrapper around the ORM. Maybe I can figure out where the database API is exposed and implement that interface. After that, swapping out the db reference to point at my in-memory representation should be fairly straightforward.

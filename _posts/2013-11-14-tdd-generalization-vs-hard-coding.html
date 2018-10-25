@@ -1,0 +1,12 @@
+---
+layout: post
+title: 'TDD: Generalization Vs Hard-Coding (Sliming)'
+date: '2013-11-14T19:42:00.001-08:00'
+author: aml
+tags: 
+modified_time: '2013-11-14T19:42:47.229-08:00'
+blogger_id: tag:blogger.com,1999:blog-1730093662423317857.post-6832964027152183117
+blogger_orig_url: https://immutablearlandis.blogspot.com/2013/11/tdd-generalization-vs-hard-coding.html
+---
+
+My mentor and I had a discussion a few weeks ago about TDD workflow. In case you don't already know, in TDD you write a failing test and then try to do the simplest thing to get the test to pass.<br /><br /><pre class="brush:java" name="code"><br />@Test<br />public void testMentorsKnowTheirApprentices(){<br />    Mentor mentor = Mentor.fetchMentorFor("Arlandis");<br />    assertEqual("Wai Lee", mentor.getName());<br /></pre><br /><br />One way to get this test to pass is by writing our Mentor class like this: <br /><pre class="brush:java" name="code"><br />public class Mentor {<br />    <br />    private String name;<br /><br />    public Mentor(String name){<br />      this.name = name;<br />    }<br /><br />    public static Mentor fetchMentorFor(String apprenticeName){<br />        return new Mentor("Wai Lee");<br />    }<br /><br />    public String getName(){<br />      return name;<br />    }<br /></pre><br /><br />The debate we were having was over whether or not it's better to hard-code a value and then refactor towards the actual implementation, or hard-code the value and then force a test for the change of implementation - a technique I've heard Gary Bernhardt refer to as "sliming".  In his "When to Generalize in TDD" screencast, Gary Bernhardt recommends going for the actual implementation immediately if it's apparent AND simple. I've used the "sliming" technique often in katas, but I couldn't imagine taking it seriously in production. One thing that confuses me is that I often hear people talk about TDD like it's some kind of momentum builder. Hard-coding a value gets me another green test, but it doesn't tell me what the next test should be or tell me about the actual solution. While I appreciate the idea of constantly checking in a "green" system, I'm not sure how far faking your implementation gets you.   I sound skeptical, but I'm genuinely confused about the process. How does hard-coding aid the TDD cycle?

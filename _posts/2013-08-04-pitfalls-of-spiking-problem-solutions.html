@@ -1,0 +1,12 @@
+---
+layout: post
+title: Pitfalls of "Spiking" Problem Solutions
+date: '2013-08-04T11:10:00.001-07:00'
+author: aml
+tags: 
+modified_time: '2013-08-04T11:14:04.024-07:00'
+blogger_id: tag:blogger.com,1999:blog-1730093662423317857.post-7324880266882426615
+blogger_orig_url: https://immutablearlandis.blogspot.com/2013/08/pitfalls-of-spiking-problem-solutions.html
+---
+
+<br /><br />A "spike" is when you hack out some code to solve a problem with the goal being a better understanding of the problem's domain. This enables more accurate estimates and starts you off on a strong foot. Spikes are a very useful mechanism for getting started on a project or problem if you're completely clueless of how you want to approach. But spikes can also be dangerous, because once you've approached a problem with a spike it's hard to get the schema of the spike solution out of your head.<br /><br />Recently, I was trying to implement some code that started up a server socket and continuously listened for new connections: dispatching new connection sockets to deal with the incoming connections. After the spike, I had something like this:<br /><br /><pre class="brush:python" name="code">server = ServerSocket(5000)<br />server.initialize_and_listen_for_connections()<br />while True:<br />    conn_socket = server.accept_connection_and_return_socket()<br />    data = conn_socket.recv(4096)<br />    new_data = transform_data(data)<br />    conn_socket.send(new_data)</pre><br /><br />So with this simple code going, I had a pretty good feel for what needed to be done. Problems started to show up when I needed to write some production-quality code that achieved this functionality. I couldn't stop thinking about this solution and every test seemed difficult to write. Instead of test-driving my design, I was spike-driving my design, and this certainly isn't a good thing. Eventually, I paired up with my mentor and we were able to create some meaningful abstractions that were fairly simple to test and achieved the same level of functionality. In the future, I'll be wary of "spiking" something out, since it's so tempting to get stuck in a one-solution mindset.

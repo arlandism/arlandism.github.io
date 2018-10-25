@@ -1,0 +1,12 @@
+---
+layout: post
+title: Notes To Self
+date: '2013-11-27T12:43:00.001-08:00'
+author: aml
+tags: 
+modified_time: '2013-11-27T12:43:54.277-08:00'
+blogger_id: tag:blogger.com,1999:blog-1730093662423317857.post-6997898373926548147
+blogger_orig_url: https://immutablearlandis.blogspot.com/2013/11/day-in-review-november-27-2013_27.html
+---
+
+I finally managed to wrap up the story I've been working on for the past couple of days. In finishing it, I want to compose my thoughts so that things that tripped me up this time around don't trip me up in the future.<br /><br /><br /><ul><li>When working with some foreign code, Wai Lee advocates reading and understanding every single line of the code. For this story, there was lots of behavior from other namespaces that I was trying to replicate when I didn't fully understand what was happening.</li></ul><div><br /></div><ul><li>Figure out the best debugging techniques with any new language you're working with. I jumped straight into the project's Clojurescript without any way to investigate what was happening under the hood. Eventually, I stumbled onto this gem: "(.log js/console foo)"</li></ul><div><br /></div><ul><li>Decompose stories where possible. There was a lot less to wrap my head around once I got the presenter code working with hard-coded values. I was fully confident that nothing in the markup was broken and that allowed me to narrow the scope of my focus to the functionality I wanted to implement.</li></ul><div><br /></div><ul><li>Try to start from the top. There was lots of code that I wrote that I didn't end up using because of misconceptions I had about the way I was receiving data. Had I verified that I was receiving data the way I expected then I could have saved myself some time.</li></ul><div><br /></div><div>Reading over these, I feel like the biggest contributor to my trip-ups on this story was my impatience. I was hoping to immediately jump into the code and start working since I felt that too much upfront research would've slowed me down. I now realize that the opposite is true.</div>

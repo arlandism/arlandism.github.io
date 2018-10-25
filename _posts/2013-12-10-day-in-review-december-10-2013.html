@@ -1,0 +1,12 @@
+---
+layout: post
+title: Day In Review - December 10, 2013
+date: '2013-12-10T20:31:00.001-08:00'
+author: aml
+tags: 
+modified_time: '2013-12-15T17:06:01.558-08:00'
+blogger_id: tag:blogger.com,1999:blog-1730093662423317857.post-857912005898978879
+blogger_orig_url: https://immutablearlandis.blogspot.com/2013/12/day-in-review-december-10-2013.html
+---
+
+Today's problem dealt mostly with front-end functionality in the dojo dashboard. One of the team's tasks this week is to save user preferences via cookies.<br /><br />We started out by giving users a clean slate: upon loading the app, users are now presented with a blank page. We ran into an interesting bug while working on this problem. For some reason, when we removed the initial on-load widgets no other widgets would appear. After implementing an impromptu, browser-based source diff between the new markup and the old we realized that the container element's height was being set to 0px in the new code. This was a problem since our front-end code verifies that the page can accommodate more widgets by checking the container's height. We determined that some code originating from a minified javascript file was overriding our CSS; we couldn't track down its Clojurescript equivalent. We added the "!important" annotation to our container.height attribute to solidify its precedence.<br /><br />Our next step was to tackle cookie storage. After some searching and debating, we decided the simplest implementation would be the serialization/deserialization of JSON objects as cookie values. These objects would go through a transformation from Clojure maps to serialized JSON and back again; it sounds more complicated than it is. Clojurescript comes packaged with a couple of utility functions that make this trivially easy. This is where we left off for the day.

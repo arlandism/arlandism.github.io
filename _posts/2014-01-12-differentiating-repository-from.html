@@ -1,0 +1,12 @@
+---
+layout: post
+title: Differentiating Repository Pattern from Dependency Wrapper Pattern
+date: '2014-01-12T11:09:00.002-08:00'
+author: aml
+tags: 
+modified_time: '2014-01-12T11:17:31.957-08:00'
+blogger_id: tag:blogger.com,1999:blog-1730093662423317857.post-9001618686292282186
+blogger_orig_url: https://immutablearlandis.blogspot.com/2014/01/differentiating-repository-from.html
+---
+
+<span style="font-family: Times, Times New Roman, serif;">In the client stuff I've been working on, we recently switched ORMs - from hyperion to korma. This switch has been relatively painless because of a layer we have in place over the ORM, which we've been referring to as a repository - an implementation of the Repository pattern, though I'm not sure that's what it actually is.</span><br /><span style="font-family: Times, Times New Roman, serif;"><br /></span><span style="font-family: Times, Times New Roman, serif;">The Repository pattern is a cool way of abstracting over a persistence layer. I had a conceptual model of this pattern in my head, but had never seen it in action. What's interesting is that my view of the Repository pattern, which I still think is correct, is usually implemented in the form of an ORM. But, the project's Repository layer merely wraps the ORM, which wraps the database. Thinking more about it, I'm not sure what we have is a repository at all, just a dependency wrapper.</span><br /><span style="font-family: Times, 'Times New Roman', serif;"><br /></span><span style="font-family: Times, 'Times New Roman', serif;">According to this definition, the Repository pattern "mediates between the domain and data mapping layers using a collection-like interface for accessing domain objects"; I think that pretty much sums up an ORM. I think the most important point to pull out of this definition is that the Repository pattern is a translation between interfaces (e.g., changing "select * from foo" to "Model.all"). In our code, much of this "translation" just happens as a one-to-one mapping between the ORM's API and our desired API ("by-key" -&gt; "by-key"), with maybe a few slightly more-complicated examples. Though I acknowledge we are doing some "mediating", I think what disqualifies our Repository layer from being an actual implementation of the Repository pattern is the lack of heavy lifting involved in the translation. I think what we have in our code is just a good example of wrapping a third-party API and constraining its interface to our use-cases.</span>

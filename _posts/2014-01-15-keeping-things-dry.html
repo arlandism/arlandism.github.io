@@ -1,0 +1,12 @@
+---
+layout: post
+title: Keeping Things DRY
+date: '2014-01-15T15:08:00.002-08:00'
+author: aml
+tags: 
+modified_time: '2014-01-15T15:08:47.811-08:00'
+blogger_id: tag:blogger.com,1999:blog-1730093662423317857.post-7363869418062865894
+blogger_orig_url: https://immutablearlandis.blogspot.com/2014/01/keeping-things-dry.html
+---
+
+I recently blogged about a Repository layer pattern in the client code I'm working on. The layer has several Repositories, one for each table in the database. The current project convention is to wrap our ORM with several helper functions that meet our use-cases (in a repository namespace for each database table). Instead of doing this for every new table, Dave proposed writing a more-complete wrapper around the ORM and delegating to the wrapper instead of creating the same functions every time around. I like this idea and I've been assigned to the task.<br /><br />My only concern is how I'll handle making the API generic enough to where we'll be able to swap out ORM implementations at will and extend the wrapper when necessary. This shouldn't be much of a problem though as I already have an idea of how it should look.<br /><br />I've come across this kind of pattern several times in my apprenticeship and squashing this duplicate logic seems to be an application of DRY (i.e. if you find yourself repeating ANYTHING, whether that be code or interfaces, there's a probably an applicable abstraction). In this case, we should generalize the helper functions and extract a dependable interface.

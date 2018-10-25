@@ -1,0 +1,12 @@
+---
+layout: post
+title: Testing is Hard, That's Why You Should Do It
+date: '2013-06-04T14:44:00.002-07:00'
+author: aml
+tags: 
+modified_time: '2013-06-05T18:21:18.143-07:00'
+blogger_id: tag:blogger.com,1999:blog-1730093662423317857.post-5997944536579579580
+blogger_orig_url: https://immutablearlandis.blogspot.com/2013/06/testing-is-hard-thats-why-you-should-do.html
+---
+
+It's often said that anything worth having will be difficult to obtain. I'm finding that fully-functional, bug-free code falls into that "hard to get" category. I've briefly practiced the test-driven/behavior-driven methodologies through code katas; specifically, the <a href="http://butunclebob.com/ArticleS.UncleBob.ThePrimeFactorsKata" target="_blank">prime factors kata</a>.<br /><br />First of all, testing is hard. Figuring through the possible scenarios and edge cases is a difficult task, I would imagine even for seasoned developers. Typically, there are tons of possible configurations for the state of your program and any one of these may trigger some unexpected bug. So, setting up your test cases is extremely difficult, but really helps toward writing bug-free code.<br /><br />Having said that, test-driven development is extremely difficult. Prior to my apprenticeship, I was used to hacking away on things for a couple of hours, taking a break, and then hacking some more. The trusty print function was my sole debugger. Oh, this function has some unexpected behavior, let's print the line above it and see what it's doing. What? My code breaks when this statement executes?! Not to worry, that's what they make print functions for. Needless to say, this doesn't cut it in the real world of software development. Test-driving your code as you write it really forces you to think about what that code should do and what it should not do. On the plus side, it's very hard to produce side-effect inducing code since your code should only do what you test for. And your testing is iterative as you write the code, so the code should only do what will pass the test. This works very well to drive your programs into code that's functional and highly predictable. Going from hacking away on meaningless code to iteratively developing it is a huge leap and makes for a difficult transition. It's a difficult process, and that is a good indicator that it's worth the time to perfect it!

@@ -1,0 +1,12 @@
+---
+layout: post
+title: Hard Dependency Questions
+date: '2013-10-14T08:12:00.003-07:00'
+author: aml
+tags: 
+modified_time: '2013-10-14T08:12:58.760-07:00'
+blogger_id: tag:blogger.com,1999:blog-1730093662423317857.post-219979943529418842
+blogger_orig_url: https://immutablearlandis.blogspot.com/2013/10/hard-dependency-questions.html
+---
+
+<span style="font-family: Times, Times New Roman, serif;">One of my latest posts pondered the question of whether or not "hard" dependencies are a code smell. After some discussion with a fellow apprentice, I'm come to the consensus that the answer is "yes" for most cases.</span><br /><div><span style="font-family: Times, Times New Roman, serif;"><br /></span></div><div><span style="font-family: Times, Times New Roman, serif;">It seems like one of the primary goals of TDD is to make code as modular as possible. Hard dependencies serve the opposite purpose. But, there are special cases where coupling is ok.</span></div><div><span style="font-family: Times, Times New Roman, serif;"><br /></span></div><div><span style="font-family: Times, Times New Roman, serif;">First, we have to observe the definition of modularity - "the&nbsp;<span style="background-color: white; line-height: 19.200000762939453px;">degree to which a system's components may be separated and recombined" - according to Wikipedia. In software, this is something akin to saying I want to be able to substitute an apple for a banana in a "FruitJuiceMaker". In XP, this goal is reached by making your code "unit" testable, where "unit" means that almost all of your hard dependencies can be injected. I say almost because of one small caveat - "standard" types.&nbsp; By standard, I mean any primitive types plus strings. </span></span></div><div><br /></div><div>Any class worth its weight will have some hard dependency. Could you imagine this?</div><div><br /></div><pre class="brush:java" name="code">@Test<br />public void testMyClass(){<br />    String str = new MockString();<br />    MyClass klass = new MyClass(str);<br />}<br /></pre><div><br />Obviously, this is pretty ridiculous. There's no value in implementing a mock string. It's much more appropriate to have a hard dependency on Java's "String" class. </div>

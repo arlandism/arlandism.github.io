@@ -1,0 +1,12 @@
+---
+layout: post
+title: Thoughts on Design
+date: '2013-12-16T18:06:00.001-08:00'
+author: aml
+tags: 
+modified_time: '2013-12-16T18:09:43.900-08:00'
+blogger_id: tag:blogger.com,1999:blog-1730093662423317857.post-6454255644849332900
+blogger_orig_url: https://immutablearlandis.blogspot.com/2013/12/thoughts-on-design.html
+---
+
+As I've gotten more comfortable with the TDD cycle, I've found myself with an insatiable desire to write code now and think design later; Michael Feathers touches on this briefly in his book "Working Effectively With Legacy Code". Equipped with the power of TDD, we often feel like there's no good excuse to not be writing code. Since your tests drive your design anyway, you might as well start hammering out some tests to get somewhere. I think this is a flawed approach.<br /><div><br /></div><div>A related topic actually came up at work today while discussing <a href="http://gigamonkeys.wordpress.com/2009/10/05/coders-unit-testing/" target="_blank">this blog post</a>. There's a comparison of Peter Norvig's approach to a Sudoku solver versus Ron Jeffries's approach to the same problem. The difference between the two approaches was that Norvig actually implemented the Sudoku solver in one post, while Ron Jeffries spent several posts trying to get the same functionality. I think the key difference between the two approaches was that Norvig knew to conceive his design beforehand. While TDD will certainly guide you to some good places, sometimes it's necessary to at least know what direction you're heading in.</div><div><br /></div><div>Today, instead of starting immediately on the code, we took about half an hour to whiteboard the problem and possible solutions. We found that this helped us clarify the problem, which later helped guide us in the right direction.&nbsp;</div><div><br /></div><div>TDD seems to take a lower-level approach than an overall design session. On a whiteboard, we can talk about the system as a whole and the specific use-cases. TDD talks about a specific piece of the system and how a client would use that piece; there's an intentionally narrow scope.<br /><br />Overall, I think both pieces fit into the puzzle and sometimes it's just hard to know which piece to go for.</div>

@@ -1,0 +1,12 @@
+---
+layout: post
+title: Code Reflections
+date: '2013-09-22T13:52:00.003-07:00'
+author: aml
+tags: 
+modified_time: '2013-09-22T13:52:43.158-07:00'
+blogger_id: tag:blogger.com,1999:blog-1730093662423317857.post-2738948605027385113
+blogger_orig_url: https://immutablearlandis.blogspot.com/2013/09/code-reflections.html
+---
+
+I've been struggling to recognize division of responsibility when it arises. Here's an example of it happening recently.<br /><br />I started with some code like this inside of my controller:<br /><br /><pre class="brush:ruby" name="code">move = params[:player_move]<br />File.write("move_history.json", JSON.dump(move))<br /></pre><br />This solution wasn't great because I knew in advance that I wanted to do some structuring of the "move" data before writing it to a file. I took this as an opportunity to perform some extraction and ended up with a class that looked like this:<br /><br /><br /><pre class="brush:ruby" name="code">class HistoryRecorder<br /><br />  def write_move(file,move)<br />    File.write(file, JSON.dump(move))<br />  end<br />end<br /></pre><br />I stubbed out this class in my original tests and began to implement its actual functionality. After I wrote some test cases it seemed like the class was pretty much finished.<br /><br /><br /><pre class="brush:ruby" name="code">class HistoryRecorder<br /><br />  def write_move(file,move)<br />    structure_the_data(move)<br />    File.write(file, JSON.dump(move))<br />  end<br />end<br /></pre><br />I guess it's pretty obvious here that this class now has two responsibilities, but it was very hard for me to recognize at the time. For some reason, IO didn't immediately jump out at me as being it's own responsibility, maybe because it was being delegated to a built-in Ruby class.<br /><br />The point I'm trying to get across is that it's been pretty tough for me to immediately notice when my methods/classes are growing in responsibility and stomp it out. In this case, as soon as I extracted the class I should probably have noticed the added responsibility. Maybe another reason this dual responsibility slipped by me is because I was pretty focused on extracting a class as soon as I implemented the desired functionality and since the extracted class was so small I saw it as sufficient.

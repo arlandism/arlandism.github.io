@@ -1,0 +1,12 @@
+---
+layout: post
+title: Absolute Paths in Java
+date: '2013-10-20T19:43:00.000-07:00'
+author: aml
+tags: 
+modified_time: '2013-10-20T19:43:29.587-07:00'
+blogger_id: tag:blogger.com,1999:blog-1730093662423317857.post-4830080041764311855
+blogger_orig_url: https://immutablearlandis.blogspot.com/2013/10/absolute-paths-in-java.html
+---
+
+...are difficult to work with. I've been trying to wrap my head around the way Java handles absolute paths for the last few hours and I've gotten nowhere. The API looks relatively straightforward, but doesn't work the way I expect it to. Given a filename "bar" that lives in "foo", I would expect (new File("bar")).getAbsolutePath() to return "cwd/foo/bar", assuming that cwd is the current working directory. Instead, what you get is "cwd/bar", which may not exist.<br /><br />I think the problem arises in that Java's documentation describes this method as yielding an abstract pathname, and is very vague about what that means. I would expect a method called "getAbsolutePath" to somehow parse my directory structure and find that file, or multiple files that match the name. Instead, I get an "abstract pathname" which doesn't act the way I expect.

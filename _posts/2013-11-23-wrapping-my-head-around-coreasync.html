@@ -1,0 +1,12 @@
+---
+layout: post
+title: Wrapping My Head Around Core.Async
+date: '2013-11-23T11:05:00.003-08:00'
+author: aml
+tags: 
+modified_time: '2013-11-23T11:05:53.955-08:00'
+blogger_id: tag:blogger.com,1999:blog-1730093662423317857.post-6756007856913902583
+blogger_orig_url: https://immutablearlandis.blogspot.com/2013/11/wrapping-my-head-around-coreasync.html
+---
+
+In the latest project I've been working on, called the "Dojo Dashboard" - written in Clojure and Clojurescript, there are a lot of asynchronous calls using the core.async library. The library introduces some new functions, a couple with some odd names, that weirded me out a bit at first. Having worked with the code for a while now, I've become accustomed to digging through the core.async source code to get a handle on what was going on under the hood.<br /><div><br /></div><div>At the heart of the library is this notion of "channels". &nbsp;According to <a href="http://en.wikipedia.org/wiki/Channel_(programming)" target="_blank">Wikipedia</a>, a "channel" is a "model for interprocess communication and synchronization". I visualize it as sort of a multi-process queue, where some other thread puts some data in and I can pull it out. So the basic idea seems to be that I can put data into a channel that some other thread will pull from later.</div><div><br /></div><div>Below is a pretty common convention I've seen throughout the code on the project I'm working on.</div><div><br /></div><div>(go</div><div>&nbsp; (if (conditional-met?)</div><div>&nbsp; &nbsp; (generate-some-html)</div><div>&nbsp; &nbsp; (&lt;! (timeout 60000)))) ; put the channel to sleep for a minute</div><div></div><div>The "go" macro call at the top takes its body and executes it asynchronously. The gist of this code is that it takes some body of execution and does it in its own thread. If a certain condition is met, then it does some additional processing, otherwise it puts this channel to sleep for a minute.&nbsp;</div><div><br /></div><div>Calls like these are sprinkled throughout the frontend code so that, ideally, the net effect would be that all of this html code gets generated at around the same time. Unfortunately, this code is in Clojurescript, which compiles to Javascript and thus only executes in one thread. That being said, I'm not sure how much of an effect the asynchronous calls really have on the load-time of the page or if they're worth the conceptual overhead.&nbsp;</div><div><br /></div>

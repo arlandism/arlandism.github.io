@@ -1,0 +1,12 @@
+---
+layout: post
+title: Modifying Inherited Methods in Python
+date: '2013-06-19T14:06:00.000-07:00'
+author: aml
+tags: 
+modified_time: '2013-06-19T14:06:31.979-07:00'
+blogger_id: tag:blogger.com,1999:blog-1730093662423317857.post-3231208301357881174
+blogger_orig_url: https://immutablearlandis.blogspot.com/2013/06/modifying-inherited-methods-in-python.html
+---
+
+I've come across a very useful trick in Python inheritance. I had a class that inherited from another class. I had a method that I needed to override, but not completely. I was shocked to find that this precise functionality existed. It's easier to just show the code and describe the context.  I have an AI class that implements a next_move method where it calls its minimax algorithm. I have a hybrid Humanoid class that I want to be able to take some human moves and some ai moves. Here's how I implemented it using that Python trick I described.  <pre class="brush:python" name="code"><br />class Humanoid(AI):                                                                   <br />                                                                                        <br />      def __init__(self,token,input_object=PlayerInput()):                              <br />          super(AI,Humanoid).__init__(self,token,input_object)                          <br />          self.times_next_move_called = 0                                               <br />          self.minimax_status = {"alpha":-1,"beta":1}                                   <br />          self.input_object = input_object                                              <br />                                                                                        <br />      def next_move(self,board):                                                        <br />          self.times_next_move_called += 1                                              <br />          if self.times_next_move_called < 4:                                           <br />              return self.input_object.call()                                           <br />          return AI.next_move(self,board)<br /></pre> You'll notice in the next_move method that I call an input object if next_move has been invoked less than 4 times. Otherwise, I call it's inherited next_move method so that the AI functionality will take over. I've never seen this trick done before and thought that it was pretty cool.

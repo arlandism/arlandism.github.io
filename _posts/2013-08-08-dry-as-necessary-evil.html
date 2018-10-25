@@ -1,0 +1,12 @@
+---
+layout: post
+title: Did I Stutter?
+date: '2013-08-08T15:51:00.003-07:00'
+author: aml
+tags: 
+modified_time: '2013-08-08T15:54:30.852-07:00'
+blogger_id: tag:blogger.com,1999:blog-1730093662423317857.post-1512146232772856371
+blogger_orig_url: https://immutablearlandis.blogspot.com/2013/08/dry-as-necessary-evil.html
+---
+
+Repetition is the bane of every programmer's existence. DRY (don't repeat yourself) is an oft-quoted principle. When is it okay to break this rule? I was working on some pretty interesting Clojure code today and couldn't decide if it would be better to make the code DRY or anti-DRY.<br /><br /><b>Link to Clojure code:</b><br />https://github.com/arlandism/n-body/blob/master/src/n_bodies/core.clj<br /><i>(I would insert it in this post, but the syntax formatter I use doesn't support Clojure)</i><br /><i><br /></i>Take a look at some sample Ruby code where I illustrate the difference:<br /><br /><pre class="brush:ruby" name="code">def anti_dry_return_a_hash(hash)<br />  {key_one =&gt; other_function(:x),<br />   key_two =&gt; other_function(:y),<br />   key_three =&gt; other_function(:z)}<br />end<br /><br />def dry_return_a_hash(hash)<br />  key_arg_pairs = [[key_one, :x] [key_two, :y], [key_three, :z]]<br />  new_hash = Hash.new<br />    key_arg_pairs.each do |pair|<br />      new_hash[pair[0]] = other_function(pair[1]) <br />    end<br />  new_hash<br />end<br /></pre><br /><br />That first function is pretty repetitive. We know in advance what the keys will be and what the arguments to other_function will be, so we explicitly call them. But, we're just doing the same thing three times: setting a pre-defined key to a pre-defined value.<br /><br />The second function makes use of a loop to get rid of that nasty, hard-coded repetition. But, it's way more complex and trickier to debug.<br /><br /><b>Other Thoughts</b><br /><b><br /></b>Maybe we shouldn't be hard-coding those keys and values in the first place. But, for the specific problem I'm trying to solve, where I know that those keys and values won't change, I think it's fine.<br /><br /><b>Solution</b><br /><b><br /></b>I'm still really undecided on this one. I suppose it depends on the context of the problem. As far as the repetition goes, I'm leaning towards keeping it in just for its simplicity. That second function is a nasty beast, even if it is DRY-friendly.

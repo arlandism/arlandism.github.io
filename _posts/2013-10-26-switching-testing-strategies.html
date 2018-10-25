@@ -1,0 +1,12 @@
+---
+layout: post
+title: Broad Vs. Narrow Tests
+date: '2013-10-26T17:28:00.001-07:00'
+author: aml
+tags: 
+modified_time: '2013-10-26T17:29:06.960-07:00'
+blogger_id: tag:blogger.com,1999:blog-1730093662423317857.post-6837092534097642238
+blogger_orig_url: https://immutablearlandis.blogspot.com/2013/10/switching-testing-strategies.html
+---
+
+I decided to try a new testing strategy with the Java server; I would only write broad tests against the API.<br /><br />So, usually I write tests like this:<br /><br /><pre class="brush:ruby" name="code">describe Adder do<br />  describe .add do<br />    it "returns 0 when adding zeroes" do<br />      Adder.add(0, 0).should == 2<br />    end<br /><br />    it "returns the sum of two numbers otherwise" do<br />      Adder.add(1, 2).should == 3<br />    end<br />  end<br />end<br /></pre><br />With my Java server, I decided to start writing tests like this:<br /><br /><pre class="brush:java" name="code">public void testAdderAdd(){<br />  int expected = 2;<br />  int actual = Adder.add(0, 2);<br />  assertEquals(expected, actual);<br />}<br /></pre><br />This differs from the first example in that it hits a wider range of inputs to try and expose the nature of the method. Writing tests like the one at the top can start to clutter a test suite and not necessarily demonstrate new functionality. For me, it seemed like I would end up with a lot of tests that could probably be deleted.<br /><br />My testing strategy for the Java server was to either start with small test cases like the ones at the top and then condense the inputs once the test was passing, or start with a broad test and make it pass. This would give me a broader test that asserted the same functionality but without the overhead of an additional spec.<br /><br /><b>Results</b><br /><b><br /></b>After working with this testing strategy for about a month or so, I've decided to revert to my old strategy. Writing really broad tests greatly increases feedback loop time in the TDD cycle. I found that this slowed my momentum and made it harder to write code. It also seems reasonable to split certain kinds of input. For example, if I'm looking through a test to see how a method handles an edge case, it'll probably be harder to mentally parse what's going on if the test is trying to condense the effects of an edge case and other inputs.

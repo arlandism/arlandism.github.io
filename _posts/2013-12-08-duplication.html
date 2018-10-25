@@ -1,0 +1,12 @@
+---
+layout: post
+title: Duplication
+date: '2013-12-08T21:10:00.001-08:00'
+author: aml
+tags: 
+modified_time: '2013-12-08T21:10:19.632-08:00'
+blogger_id: tag:blogger.com,1999:blog-1730093662423317857.post-5606616727090958413
+blogger_orig_url: https://immutablearlandis.blogspot.com/2013/12/duplication.html
+---
+
+Avoiding logical duplication seems to be a consistent theme for me lately. After tackling the cache manager for the dojo dashboard, Phil and I set out to integrate the new code with the existing widgets. This task was easy enough. After getting the cache working with a couple of widgets, I noticed a recurring pattern:&nbsp;<div><br /></div><div>"(if (should-hit-api?)</div><div>&nbsp; &nbsp; (hit-api)</div><div>&nbsp; &nbsp; (get-cached-response))</div><div>"</div><div><br /></div><div>This bothered me, but seemed to be the cost of integrating our cache manager with existing features. What we should've done is put this conditional into its own function, so that at least the logic wasn't being duplicated.&nbsp;</div><div><br /></div><div>Lesson learned: No bargaining with duplication.</div>

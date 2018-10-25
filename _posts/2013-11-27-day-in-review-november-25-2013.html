@@ -1,0 +1,12 @@
+---
+layout: post
+title: Day In Review - November 25, 2013
+date: '2013-11-27T06:34:00.002-08:00'
+author: aml
+tags: 
+modified_time: '2013-11-27T06:34:46.934-08:00'
+blogger_id: tag:blogger.com,1999:blog-1730093662423317857.post-3259423674168618058
+blogger_orig_url: https://immutablearlandis.blogspot.com/2013/11/day-in-review-november-25-2013.html
+---
+
+I did some more work today on a story that Phil and I have been struggling with over the past week. Currently, there's a widget feature on the Dojo Dashboard where you can ping a server of your choice and have a display showing whether the server is currently responding to requests. The new story involves aggregating the results from a bunch of different pings and showing a display with the number of servers that are correctly responding and the number of servers that are failing.<br /><b><br /></b>At first, our primary struggle with this story was getting acquainted with the project architecture and conventions. This was a factor in all of the stories on the log last week, but it became especially relevant when trying to implement this story. Later on in the week, we understood the gist of the application, but we still struggled to get the display rendered correctly.<br /><b><br /></b>After pairing with my mentor &nbsp;on the story for a while, everything became much clearer. There was lots of code to borrow from a similar widget and my primary goal was to generate a div without pinging any servers; this worked! Now, implementing the pinging functionality should be a piece of cake.

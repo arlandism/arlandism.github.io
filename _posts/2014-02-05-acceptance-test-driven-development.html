@@ -1,0 +1,12 @@
+---
+layout: post
+title: Acceptance Test Driven Development
+date: '2014-02-05T15:51:00.003-08:00'
+author: aml
+tags: 
+modified_time: '2014-02-05T15:51:51.522-08:00'
+blogger_id: tag:blogger.com,1999:blog-1730093662423317857.post-8476378263388936495
+blogger_orig_url: https://immutablearlandis.blogspot.com/2014/02/acceptance-test-driven-development.html
+---
+
+Today, Wai Lee and I paired on some autocompletion Clojurescript code. In contrast to our usual approach of writing "unit" tests and getting them to pass, we decided to write really deep acceptance tests and work from there.<br /><br />The reason we chose this approach was that we weren't really sure what direction we wanted to take with the implementation so trying to decompose the problem into "units" and write tests for those units might've been more trouble than it was worth. Our strategy worked pretty well and we ended up with test and implementation code that we were happy with. In general, acceptance test driven development is a bit of a risky strategy. Below are some of the common pitfalls and how we avoided them:<br /><br /><ul><li>We wrote way more code than we needed to make tests pass. This could be construed as a bad thing but the "extra" code we wrote didn't do much. I'm not sure how I feel about this one but writing more tests for nuances like "Assert that this field got pulled from the form" don't provide much benefit in my opinion.</li><li>There's less documentation surrounding the code. One of the biggest benefits of TDD is the documentation that gets generated as a result. With high-level acceptance tests we get a picture of what a module should do, but if pieces of that module break it may be hard to figure out what those pieces are supposed to do in the first place. Luckily, the module we were working on ended up being pretty small, small enough that debugging it wouldn't take much time.</li><li>Acceptance tests lengthen the TDD cycle. You don't get the benefit of having a working system every five minutes. In our case, I think we worked quickly enough to keep a tight feedback loop on the correctness of the system.</li></ul><div>It was a lot of fun to write high-level tests and work towards an implementation without worrying about granular details. This strategy deviated from the style of the project though, so I'm not sure how the rest of the team will feel it. I think we may get away with it because of how small the acceptance tests actually ended up and the level of confidence they provide.&nbsp;</div>

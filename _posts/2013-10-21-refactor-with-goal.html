@@ -1,0 +1,12 @@
+---
+layout: post
+title: Refactor With A Goal
+date: '2013-10-21T16:36:00.001-07:00'
+author: aml
+tags: 
+modified_time: '2013-10-21T16:36:03.611-07:00'
+blogger_id: tag:blogger.com,1999:blog-1730093662423317857.post-4418627858951807780
+blogger_orig_url: https://immutablearlandis.blogspot.com/2013/10/refactor-with-goal.html
+---
+
+While refactoring today, I realized that I had no clue where I was going. This made the refactoring especially difficult since I didn't know what my ideal solution looked like. Without the end goal in sight, it's hard to make incremental steps towards reaching it. Typically, I maintain a mental list of criteria that I want to be met when a refactoring is over, but with larger ones it's much easier to work towards one outcome.&nbsp;<div><br /></div><div>Below are some of the most common mental criteria I use:</div><div><br /></div><div><ul><li>DRY - Removing even the slightest hint of duplication. This goes for strings, conditionals, and logic chains.</li><li>Expression - I'm horrible at judging the objectiveness of my own code, but I still try. I take a look at any ways I can express my intent more clearly.</li><li>Breaking down large methods - Large methods often obscure the overall intent of the code. Breaking them down into smaller pieces makes the code less mentally-taxing.</li></ul>Larger refactoring goals:</div><div><br /></div><div><ul><li>Dependency Injection - Pulling out a hard dependency and finding a good place to inject it is usually a pretty ambitious feat. And then you need tests for the newly-independent dependency, along with an interface for DIP-compliance, and a mock for the original class.&nbsp;</li><li>Changing Method Signature - This is a pretty tough task as well, depending on the number of clients involved. &nbsp;</li></ul><div>I guess the second list just boils down to changing interfaces, which is always tough. Also, I'm not sure if you'd consider this refactoring or just simple re-design. It borders somewhere between the two.</div></div>

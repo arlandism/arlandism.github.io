@@ -1,0 +1,12 @@
+---
+layout: post
+title: Pairing Tour Day 6
+date: '2014-02-19T10:37:00.000-08:00'
+author: aml
+tags: 
+modified_time: '2014-02-19T10:37:00.283-08:00'
+blogger_id: tag:blogger.com,1999:blog-1730093662423317857.post-5333549931756063523
+blogger_orig_url: https://immutablearlandis.blogspot.com/2014/02/pairing-tour-day-6.html
+---
+
+<b>Background</b><br /><b><br /></b>Craftsman: Mark Grant<br /><br />Mark has worked on the same project for the last one and a half years, so he knows it pretty well. The project is comprised of several Rails apps that communicate via RESTful APIs.<br /><br /><b>Summary</b><br /><b><br /></b>Mark and I got the day started by knocking out one of the stories on the backlog; the team wanted to disable one of those "speak with a representative" popups when the app was in a development or test environment. Mark had the idea to change the javascript to an ERB template and put a conditional in, which worked well.<br /><br />Unfortunately, we were blocked on the rest of the available stories while we waited for access to the production database. In the meantime, we had standup with the rest of the team and the product manager. After getting the database credentials, we started working on a story where we needed to add some new information to the application's registration system. The information displayed to app users varies with the state they're in, and the state we were adding had some additional logic associated with it. After getting most of the components hooked in, we spent the rest of the day trying to figure out why the information we were expecting to see only showed some of the time. It turns out there were some special cases where complex backend logic computed the information. We managed to track down where this processing happened, but hadn't fixed it by the end of the day.<br /><br />I had a lot of fun pairing with Mark and visiting another client site. One thing I've noticed after visiting a bunch of clients is that they're all "Agile"; they have standups and retrospectives, use story-tracking software, and pair-program, which I wasn't expecting. It also makes me wonder what about our process they value so much since they seem to have a lot of the same infrastructure.

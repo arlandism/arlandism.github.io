@@ -1,0 +1,12 @@
+---
+layout: post
+title: Don't Debug Strings With Print Statements
+date: '2013-10-16T14:45:00.004-07:00'
+author: aml
+tags: 
+modified_time: '2013-10-16T14:46:11.714-07:00'
+blogger_id: tag:blogger.com,1999:blog-1730093662423317857.post-3810940914259725722
+blogger_orig_url: https://immutablearlandis.blogspot.com/2013/10/dont-check-strings-with-print-statements.html
+---
+
+When I'm debugging, I often use print statements to perform sanity checks about the values of different variables. I've come to realize that this may not be a good approach when dealing with strings.<br /><br />I came against a formidable bug today in my code. It boiled down to the fact that I thought I was getting a certain string; I was getting that string, but it happened to have a space appended to it. As you can probably guess, printing the string to the console didn't help me debug the problem. This is now the second time that I've been burned trying to compare the values of strings by logging data to the console; the first time I was dealing with a CLRF terminator.<br /><br /><b><br /></b>Here are two good alternatives for comparing/checking for strings.<br /><br />1) Break the string into an array. In Ruby:<br /><pre class="brush:ruby" name="code">"Arlandis\r\n".split("")<br />=&gt; ["A", "r", "l", "a", "n", "d", "i", "s", "\r", "\n"]<br /></pre><br />2) Check equality directly with the expected string. In Java:<br /><br /><pre class="brush:java" name="code">System.out.println("Arlandis".equals("Arlandis "));<br /></pre><br />Output streams hide a lot of data from you. Don't always believe what they're saying.

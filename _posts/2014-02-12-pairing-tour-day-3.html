@@ -1,0 +1,12 @@
+---
+layout: post
+title: Pairing Tour Day 3
+date: '2014-02-12T15:10:00.001-08:00'
+author: aml
+tags: 
+modified_time: '2014-02-13T06:24:30.764-08:00'
+blogger_id: tag:blogger.com,1999:blog-1730093662423317857.post-5757335931374906438
+blogger_orig_url: https://immutablearlandis.blogspot.com/2014/02/pairing-tour-day-3.html
+---
+
+<b>Background</b><br /><br />Craftsman: Eric Smith<br /><br /><b>Summary</b><br /><br />Today, I sat in while Eric went through "storytime" - getting more background on the stories under consideration for the next IPM before estimating them, and paired with him for a little bit on a Rails app.<br /><br />I think the most interesting aspect of the day was watching the team interact during "story time"; everyone seemed to have slightly different contexts on certain parts of the application. A significant portion of time was spent clarifying the different use-cases of the app. It seemed like time well-spent since it puts the team on more equal-footing. The stakeholder for this project was also present during much of the discussion, which surprised me since we mostly abstracted technical details away from the stakeholder on my recent project.<br /><br />I really enjoyed the small amount of writing code that Eric and I did. He wrote his tests in a way where I could easily get them to pass without much contextual overhead, which seems like a valid heuristic for test quality. We were trying to get a controller base-class under test by creating a fake sub-class. The tests started to get a bit hairy in the end when there seemed to be lots of behaviors that we had to override in the fake sub-class. Unfortunately we ran out of time so we didn't have more time to think about the tests. Eric mentioned that he frequently comes across this testing problem in implementations of the Template Pattern since you're never quite sure which behaviors to test in the base-class and which behaviors to test in the sub-class.<br /><br />Today was also extremely humbling since I got to see some production-level Rails code and learned more about my deficiencies. Hearing the team talk about data migrations, S3 buckets, and optimized SQL queries made me realize the depth of learning I still have to do. Fortunately, the apprenticeship has forced me to become familiar with learning new technologies quickly. Before leaving, I asked Eric about which areas (e.g. databases, frameworks, etc.) I should work the hardest in as I transition to a craftsman; he said all of them.

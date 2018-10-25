@@ -1,0 +1,12 @@
+---
+layout: post
+title: Day In Review - December 23, 2013
+date: '2013-12-23T18:03:00.000-08:00'
+author: aml
+tags: 
+modified_time: '2013-12-25T04:18:31.098-08:00'
+blogger_id: tag:blogger.com,1999:blog-1730093662423317857.post-8749421720504713761
+blogger_orig_url: https://immutablearlandis.blogspot.com/2013/12/day-in-review-december-23-2013.html
+---
+
+I came across an interesting problem today while working on a test.<br /><br />The test made assertions against the string transformation of a clojure map. While an assertion like this is perfectly valid:<br /><br />"<br />(should= {:one 1 :two 2} {:two 2 :one 1}<br />"<br /><br />This assertion doesn't hold true:<br />"<br />(should= "{:one 1 :two 2}" "{:two 2 :one 1}"<br />"<br /><br />Hash-maps, by definition, are order insensitive, so they can come out in all kinds of different orders, but as long as the key-value pairs match up then it's reasonable to assume they're equal; strings are obviously a different matter.<br /><br />In both the implementation and the spec file, I was working with a map, but I was making an assertion against the string form of that map. My spec file was producing one ordering, while my implementation file was producing another, which produced different strings. The clients of this implementation wouldn't be worried about how the string looked, just about the contents of it.<br /><br />My first thought was to just reorder the spec assertions to look like the result I was getting, but I realized that these tests would be too fragile. The next person looking at these specs could rearrange the map ordering and be completely confused as to why the specs suddenly fail.<br /><br />Temporarily, I changed the ordering so that the specs passed and I could move on, but I didn't want to leave the final code in this position.<br /><br />Here was my final solution:<br /><br />"<br />(:require [cljs.reader :as reader])<br /><br />(should= {:one 1 :two 2} (reader/read-string '{:two 2 :one 1}'))<br />"<br /><br />This spec is harder to understand upfront; I would initially be confused as to why the 'read-string' was necessary. But, I think the more robust assertion is worth the overhead.

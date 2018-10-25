@@ -1,0 +1,12 @@
+---
+layout: post
+title: Day In Review - November 26, 2013
+date: '2013-11-27T06:49:00.002-08:00'
+author: aml
+tags: 
+modified_time: '2013-11-27T06:50:00.943-08:00'
+blogger_id: tag:blogger.com,1999:blog-1730093662423317857.post-5440576750156789025
+blogger_orig_url: https://immutablearlandis.blogspot.com/2013/11/day-in-review-november-27-2013.html
+---
+
+Phil and I decided it would be best to split up on the stories. We were both trying to debug the same problem and neither one of us knew which direction to head in so I suggested that break off to tackle more stories.<br /><br />After making sure all of the view code for the server pinging story was working, I worked more on the functionality. Currently, there's a mix of standard AJAX calls (from the cljs-ajax library) and core.async channel calls sprinkled throughout the project. After fighting with core.async for awhile I figured it'd be simpler to work with AJAX.<br /><br />The return value from the GET function didn't seem to be returning what I expected. Andrew suggested that I specify a callback function that would receive the response upon successful execution.This led to a new problem since I was hoping to work with the return value of the function itself. My workaround for this was to have my callback function mutate an atom; adding the newly received response to a list. My rendering code would check the value stored in this atom.<br /><br />I fiddled with this implementation and realized that the atom wasn't getting updated. At this point I had too many variables to take into account. I decided to decompose the problem by sending a single GET request using the library, checking the request actually got sent, checking the response, and checking the atom. Everything on the list checked off except for the atom's value. After waiting for a few seconds, I saw the atom value update. It seems that the value of the atom isn't getting altered when I expect it to be, but will eventually register. I'm hoping to figure out a way to delay execution of rendering until this atom has been altered.

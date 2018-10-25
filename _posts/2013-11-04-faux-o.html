@@ -1,0 +1,12 @@
+---
+layout: post
+title: Faux-O
+date: '2013-11-04T19:21:00.003-08:00'
+author: aml
+tags: 
+modified_time: '2013-11-04T19:21:52.135-08:00'
+blogger_id: tag:blogger.com,1999:blog-1730093662423317857.post-8121680357863326445
+blogger_orig_url: https://immutablearlandis.blogspot.com/2013/11/faux-o.html
+---
+
+I spent the evening today watching <a href="https://www.destroyallsoftware.com/talks/boundaries" target="_blank">Gary Bernhardt's "Boundaries" talk</a> at <a href="http://scna.softwarecraftsmanship.org/" target="_blank">SCNA</a> 2012. In it, he discusses a hybrid paradigm, faux-o, that combines functional and object-oriented strategies into one. The central idea behind this paradigm is that you isolate as much logic as possible from the surrounding nastiness of state. Business logic and the like are wrapped inside of objects that behave functionally.<br /><br />The outer layer of the system handles stateful operations like IO. Gary refers to this layer as the "shell".<br />Because of the functional qualities of the business logic, writing tests against the core of the system becomes a trivial exercise. As far as testing the "shell", Gary mentions integration tests as a possibility here as long as most complex logic is kept in the core. This prevents the "shell" from producing logical branches that become overwhelming in the test suite.<br /><br />The talk reinforced a growing intuition that functional programming is ideal. I've found that several 8th Light craftsmen write a lot of their code functionally. This has forced me to strive for a functional approach in my own code and has made testing a lot easier. I hope to explore some of the ideas of faux-o in my code to see how it pans out.

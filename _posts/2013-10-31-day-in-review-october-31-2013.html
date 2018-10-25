@@ -1,0 +1,12 @@
+---
+layout: post
+title: Day In Review - October 31, 2013
+date: '2013-10-31T15:08:00.000-07:00'
+author: aml
+tags: 
+modified_time: '2013-10-31T15:08:44.187-07:00'
+blogger_id: tag:blogger.com,1999:blog-1730093662423317857.post-7344964433098372307
+blogger_orig_url: https://immutablearlandis.blogspot.com/2013/10/day-in-review-october-31-2013.html
+---
+
+I spoke yesterday about a problem I was having where I didn't know how to handle the fact that many of my 'Response' classes needed a 'Request' object to work and that I wouldn't be able to instantiate these 'Responses' in advance since I wouldn't have my hands on a 'Request' yet. I decided to keep the solution that I implemented in 'HttpResponseBuilder' yesterday and add in a workaround.<br /><br />I wrote a 'FeatureToggler' class that the 'HttpResponseBuilder' could query for active routes. This class takes a 'FeatureParser' in its constructor so it'll know which features are enabled. The 'HttpResponseBuilder' asks the 'FeatureToggler' whether a given route has been enabled before looking up the appropriate response.<br /><br />The FeatureToggler looks like this:<br /><br /><pre class="brush:java" name="code">    public FeatureToggler(FeatureParser featureParser) {<br />        routeToEnabledValue.put("GET /ping", featureParser.pingValue());<br />        routeToEnabledValue.put("GET /form", featureParser.formValue());<br />        routeToEnabledValue.put("POST /form", featureParser.postFormValue());<br />        routeToEnabledValue.put("GET /ping?sleep", featureParser.sleepValue());<br />        routeToEnabledValue.put("GET /game", featureParser.gameValue());<br />        routeToEnabledValue.put("GET /browse", featureParser.browseValue());<br />    }<br /><br />    @Override<br />    public Boolean isEnabled(String headers) {<br />        return routeToEnabledValue.get(headers);<br />    }<br /></pre><br />Fortunately, it's a pretty simple class.<br /><br />The HashMap that the FeatureToggler uses is exactly the same as the one used by the 'HttpResponseBuilder'. Tomorrow morning, I'll probably DRY up the duplication there and polish the code up to finish the feature.

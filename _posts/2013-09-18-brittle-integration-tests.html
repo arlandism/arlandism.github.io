@@ -1,0 +1,12 @@
+---
+layout: post
+title: Brittle Integration Tests
+date: '2013-09-18T20:39:00.000-07:00'
+author: aml
+tags: 
+modified_time: '2013-09-18T20:39:07.732-07:00'
+blogger_id: tag:blogger.com,1999:blog-1730093662423317857.post-4678423790355458554
+blogger_orig_url: https://immutablearlandis.blogspot.com/2013/09/brittle-integration-tests.html
+---
+
+I've found that taking a second look at my code after some time has passed allows me to critique it in a more objective manner. I'm really forced into the mindset of a developer that's not intricately familiar with the nuances of the codebase; though it's obviously still a biased mindset. These second looks are often enlightening and produce some great refactors.<br /><br />I managed to wrap up a feature today so I decided to do some refactoring I mentioned above. I got a ton done: renamed some ambiguous classes, made method names terser, and factored out some duplicate logic in one of my classes. While this was a great feeling, it broke some of my tests. A couple of the integration tests broke, but none of the unit tests. I've had this problem before, unfortunately, so I decided to run my acceptance tests to see if anything actually broke - all green! Somewhere in my integration spec file there's code that's way too coupled to what's happening. I'm changing implementation, but somehow my integration spec is telling me that I'm changing behavior. I think this is one of the challenges of good integration testing. When you're exposed to a bug like this it's really hard to narrow the focus on what's really making the test break.<br /><br />This is frightening! Not only does it hinder my ability to "refactor fearlessly", but it also makes me question the entire spec file, not just the tests that are failing.<br /><br /><b>What To Do?</b><br /><b><br /></b>On one hand, some of these tests are so brittle that they crumble at the smallest changes. On the other hand, I do think that these tests provide some value. When these tests pass I have an extremely high level of confidence that everything is working like it's supposed to.<br /><br /><b>Obvious Solution</b><br /><b><br /></b>I think the answer is to refactor the tests in a way that provides me the same degree of confidence without the brittleness. I'm reluctant to do so since I'm sure it'll be a mentally taxing task that will, at least momentarily, slow down my progress. But, it's the only way to maintain confidence in my test suite and be able to refactor.

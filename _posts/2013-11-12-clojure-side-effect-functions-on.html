@@ -1,0 +1,12 @@
+---
+layout: post
+title: Clojure Side-Effect Functions On Collections
+date: '2013-11-12T14:57:00.001-08:00'
+author: aml
+tags: 
+modified_time: '2013-11-12T14:57:04.821-08:00'
+blogger_id: tag:blogger.com,1999:blog-1730093662423317857.post-3789689725957167670
+blogger_orig_url: https://immutablearlandis.blogspot.com/2013/11/clojure-side-effect-functions-on.html
+---
+
+Today, I worked on the display section of my kata. After performing the kata, I'll be able to plug in some code and there will be a cool pop-up that steps through the simulation. I'm accomplishing this using Quil, which is a pretty cool library.<br /><br />I'm slowly learning the pain of trying to make Clojure work with stuff that it wasn't meant for. The language is great for data transformation, but you have to implement some awkward workarounds to make it work with stuff like IO. Since the former is what I primarily use the language for, my conceptual understanding of its other utilities is subpar. This notion was reinforced today when I tried to map one of Quil's built-in drawing functions onto a collection. I found the source for the function, but it mostly just delegates to some Java stuff and I can't seem to track it down. Presumably, it's just a function with side-effects. So, in my code I had something like:<br /><br />(map draw-fn [body-one body-two body-three])<br /><br />This wasn't drawing anything at all, so I tried just calling the draw-fn on one body.<br /><br />(draw-fn body)<br /><br />This worked, and made me think that the draw-fn just didn't work the way I thought it do. After a lot of googling, I figured out that I needed to do this:<br /><br />(dorun map draw-fn [body-one body-two body-three])<br /><br />I definitely need to do some more work with the Clojure "do"-prefixed functions. All that I can parse from the docs is that "dorun" forces the evaluation of a function with side-effects on the entire collection.<br /><br />I came to my conclusion by realizing that funny things happen when dealing with side-effect fns and this to me demonstrates the awkwardness of forcing a language to do something that it doesn't seem suited for.<br /><br /><br />

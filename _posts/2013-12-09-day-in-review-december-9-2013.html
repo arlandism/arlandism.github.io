@@ -1,0 +1,12 @@
+---
+layout: post
+title: Day In Review - December 9, 2013
+date: '2013-12-09T17:46:00.001-08:00'
+author: aml
+tags: 
+modified_time: '2013-12-09T17:46:55.062-08:00'
+blogger_id: tag:blogger.com,1999:blog-1730093662423317857.post-2069452175455278546
+blogger_orig_url: https://immutablearlandis.blogspot.com/2013/12/day-in-review-december-9-2013.html
+---
+
+On a brief detour from the dojo dashboard, Phil and I worked on 8th Light's customized Boucher configurations. There were hardcoded average-request-per-second and burst-limits for the webserver that our stakeholder wanted to be able to configure programmatically.<br /><br />After some digging around, we figured out where Boucher was creating the nginx configuration files. From there it was simply a matter of turning the hard-coded values into variables.<br /><br />To me, this story really highlighted the confidence and problem-solving skills I've gained from my time at 8th Light. Getting started, I knew very little about nginx, Chef, and Boucher, but Phil and I were quickly able to analyze which parts of these technologies were relevant to the problem at hand and swiftly find a solution we were comfortable with.

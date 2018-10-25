@@ -1,0 +1,12 @@
+---
+layout: post
+title: Ruby Koans
+date: '2013-07-16T18:57:00.001-07:00'
+author: aml
+tags: 
+modified_time: '2013-07-16T19:01:59.004-07:00'
+blogger_id: tag:blogger.com,1999:blog-1730093662423317857.post-3985684030416636287
+blogger_orig_url: https://immutablearlandis.blogspot.com/2013/07/ruby-koans.html
+---
+
+I've finally started to learn Ruby, which is good since everyone else in the office knows it. To start things off, I've downloaded the Ruby Koans. The exercises are pretty fun and don't feel like work at all.<br /><br />Already, I've come across a few things that are different from my native Python. For instance, what does this do?<br /><br /><br /><pre class="brush:ruby" name="code">array = [:apples, :oranges, :bananas, :pineapple]<br />array[2..-1]<br /></pre><br />Apparently, it outputs: <br /><pre class="brush:ruby" name="code">[:bananas, :pineapple]<br /></pre>That kinda makes sense, "Okay, take the 2nd index element and then the last element since the index goes to -1". But then, why isn't this equal? <br /><pre class="brush:ruby" name="code">array[2..0] != [:bananas, :apples]<br /></pre>And what about this: <br /><pre class="brush:ruby" name="code">array[4]<br />=&gt; nil<br />array[4..100]<br />=&gt; []<br /></pre>So, if I try to access an index that doesn't exist then I get a nil object, but if I use a Range then I get an empty array? I suspect there's some magic going on with the Range object and the Array object, and that would explain why I don't understand the first example. <br />(Billy Mays voice) But wait, there's more! WTF is going on here?! <br /><pre class="brush:ruby" name="code">array[4,0]<br />=&gt; []<br />array[5,0]<br />=&gt; nil<br /></pre>It looks like if you try to access one index past the end of the array then you'll get an empty array back, but if you go past that then you get a nil object. But that only happens when you pass in a second argument to the accessing method, otherwise you just get a nil object. Weird! 

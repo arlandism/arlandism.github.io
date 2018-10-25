@@ -1,0 +1,12 @@
+---
+layout: post
+title: 'Modularity is Hard: Are Hard Dependencies Always a Smell?'
+date: '2013-10-10T18:38:00.000-07:00'
+author: aml
+tags: 
+modified_time: '2013-10-10T18:38:48.128-07:00'
+blogger_id: tag:blogger.com,1999:blog-1730093662423317857.post-5101381568204649272
+blogger_orig_url: https://immutablearlandis.blogspot.com/2013/10/modularity-is-hard-are-hard.html
+---
+
+I managed to wrap up the multithreading feature for my server and was advised by my mentor that I should refactor the main "Server" class to make it more modular. I knew this would prove to be a Herculean task given there were around five hard dependencies. Somehow, I reasoned, I needed to find a way to inject five dependencies!<br /><br />One opportunity came in the form of refactoring IO. I had two separate instances that worked with the network io - BufferedReader and PrintWriter. This seemed like a good opportunity for extraction. BufferedReader and PrintWriter became NetworkIO, which I would inject in the constructor. Cool, we're down to two dependencies: a class that builds responses and a class that represents requests. The "builder" could just be injected as well, but the "Request" class can't be injected because it gets built inside the server's "respond" method. I soon found myself trying to implement two additional classes for every class in the system - an interface and a mock. This proved to be cumbersome, complex, and time-consuming. I wonder if there's some way to not have to write this much code to achieve the desired effect.<br /><br />Untestable code is usually a smell that the code isn't modular enough, but how does this extend to cases where modularity isn't the goal? Do you make the code unit-testable with the idea that you may want to use it somewhere else down the line, or do you bite the bullet and write integration tests against it? It seems like the core tenets of TDD point towards the former idea, but something about trying to write an interface and mock and having to juggle this additional complexity bothers me. It gives me a sense that perhaps I'm approaching the problem in the wrong fashion. I've often found myself trying to attack a problem in what I thought was an Agile-discplined way only to find that the actual Agile way is much simpler.<br /><br />Maybe it's a design smell or I'm just doing it wrong.

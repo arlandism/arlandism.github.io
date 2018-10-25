@@ -1,0 +1,12 @@
+---
+layout: post
+title: Pairing Tour Day 7
+date: '2014-02-20T17:42:00.001-08:00'
+author: aml
+tags: 
+modified_time: '2014-02-20T17:42:29.574-08:00'
+blogger_id: tag:blogger.com,1999:blog-1730093662423317857.post-7588933271911753957
+blogger_orig_url: https://immutablearlandis.blogspot.com/2014/02/pairing-tour-day-7.html
+---
+
+<b>Background</b><br /><b><br /></b>Craftsman: Rob Looby<br /><br />Rob works on one of the larger teams at 8th Light. Typically, he works on a pretty big .NET platform with lots of use-cases - mostly dealing with handling user data.<br /><br /><b>Summary</b><br /><b><br /></b>Rob and I paired on some frontend code that was pretty interesting. Everything was Coffeescript mixed with Backbone, with some Marionette sprinkled on top.<br /><br />After the team's demo and IPM, Rob and I worked to refactor some of the existing render logic.<br />Basically, there was a giant form being rendered to the user and we wanted to decompose it into multiple forms. This was problematic because of validation that was happening on the View object containing the form. We managed to get a lot of the wiring done but lost some momentum when we had to refactor the tests. Unfortunately, the tests were a bit too coupled to the giant form implementation so we had to reorganize them. By the end of the day we had managed to get a couple to pass.<br /><br />It was really interesting to work on frontend development since that's an area I haven't really been exposed to. Backbone and Coffeescript were pretty cool to work with as well. Backbone "Views" aren't normal template-rendering views, those are Backbone "Templates", so that was an interesting terminology hiccup to learn about.<br /><br />To wrap things up, Rob and I discussed some code in the project that had been written a few weeks prior and how he wasn't happy with it. We then talked about how difficult it is to find time for good refactorings with the pressure of iteration sprints weighing you down.

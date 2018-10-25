@@ -1,0 +1,12 @@
+---
+layout: post
+title: The Testing Circle
+date: '2013-09-02T19:00:00.002-07:00'
+author: aml
+tags: 
+modified_time: '2013-09-02T19:00:28.204-07:00'
+blogger_id: tag:blogger.com,1999:blog-1730093662423317857.post-258623197013730396
+blogger_orig_url: https://immutablearlandis.blogspot.com/2013/09/the-testing-circle.html
+---
+
+<br />Today, I worked mostly on my Sinatra application. Primarily, I was doing some refactoring and making my recent feature addition cleaner.<br /><br /><b>Refactoring Tests</b><br /><b><br /></b>Whenever I do a refactor I'm forced to take a second look at my tests. Some of the questions I ask myself are: "Are these tests as expressive about what the code does as they could be? What functionality is being tested here? Are these tests really necessary, and if not, why did you write them?" This line of introspective questioning usually forces me to slim down my spec file. I often find that I'll test-drive a solution while maintaining the mini-tests that got me there. These tests, while useful initially, are no longer necessary. This makes me question aspects of my testing strategy. Perhaps my subsequent tests shouldn't be as comprehensive as they are; this would force me to keep the earlier tests around.<br /><br /><b>Test Circle of Life</b><br /><b><br /></b>Maybe it's the natural cycle for test-driving a solution: Write this little test, make it pass, write a bigger test, make it pass, delete that smaller test from before during refactor. This is akin to a perspective Uncle Bob mentioned at one of his 8LU talks where he likened the TDD cycle to an expanding circle. The first test is the smallest complete circle that can be drawn, while the next encompasses the smaller one and takes up even more space. The boundaries of the circle represent the functionality of your code. As these boundaries continue to grow, you find that the smaller circles you initially drew are worthless. Currently, I'm asking myself if maybe I missed part of the point Uncle Bob was trying to make. Maybe the big-circle eats small-circle is just one of many different testing approaches; another method could be circle-of-similar-size intersects boundaries with circle-from-before but goes in a different direction. I imagine this would look somewhat like a montage of venn diagrams. Testing in this way would reduce the amount of duplicate functionality being tested and decrease the number of tests that need to be discarded. At least then I wouldn't feel the burden of deleting so much test code down the line. I think it warrants investigation.
