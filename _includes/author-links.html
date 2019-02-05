@@ -88,5 +88,13 @@
         </a>
       </li>
     {%- endif -%}
+
+    {%- if _author.devto -%}
+      <li title="{{ __return | replace: '[NAME]', 'dev.to' }}">
+        <a class="button button--circle devto-button" itemprop="sameAs" href="https://dev.to/{{ _author.devto }}" target="_blank">
+          <div class="icon">{%- include svg/icon/social/dev-badge.svg -%}</div>
+        </a>
+      </li>
+    {%- endif -%}
   </ul>
 </div>
