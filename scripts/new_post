@@ -1,0 +1,23 @@
+#! /usr/bin/ruby
+
+require 'date'
+
+date = Date.today.strftime
+input = ARGV.join(' ')
+timestamp = Time.now.strftime('%H:%M:%S')
+
+BASE_TEMPLATE = <<-TEMPLATE
+---
+layout: article
+title: #{input}
+date: #{date} #{timestamp}
+categories: programming
+tags:
+- programming
+---
+TEMPLATE
+filename = "#{date}-#{input.downcase.gsub(/\s+/,'-')}.md"
+puts "Creating new post in the _posts directory: #{filename}"
+File.open(File.join("_posts", filename), "w+") do |f|
+  f.write(BASE_TEMPLATE)
+end
