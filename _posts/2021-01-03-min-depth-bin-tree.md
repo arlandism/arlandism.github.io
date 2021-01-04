@@ -115,4 +115,4 @@ It's a lot of bookkeeping around weird states and honestly doesn't feel very ele
 
 6) Otherwise, perform a normal comparison of the two paths and return the smallest.
 
-To be honest I'm not especially pleased with this solution and have strong sense it could be more elegant. If I have time I'll probably come back to it.
+To be honest I'm not especially pleased with this solution and have a strong sense it could be more elegant. If I have time I'll probably come back to it.
