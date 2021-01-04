@@ -35,16 +35,21 @@ Below is a poorly drawn visualization of this structure.
 ```
 
 In this example, 9 is a leaf node because it has no children. All of the possible paths for this tree are:
-3->9,
-3->20->15,
-3->20->7
+
+* 3->9
+
+* 3->20->15
+
+* 3->20->7
 
 Clearly the first path is the shortest, with only 2 nodes.
 
 # Solution
 
 So one solution to this problem is the following rough algorithm:
+
 1) Find every path from the root to a leaf node
+
 2) Pick the shortest
 
 Finding a path from the root to a leaf node involves recursively moving down the tree and keeping track of the path we're taking.
