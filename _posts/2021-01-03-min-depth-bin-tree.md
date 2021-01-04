@@ -1,15 +1,15 @@
 ---
 layout: article
-title: Things I Miss From Ruby
+title: Minimum Depth Binary Trees
 date: 2021-01-03 16:00:00PM
 categories: programming
 tags:
 - programming
 - python
-- algorihtms
+- algorithms
 ---
 
-In preparation for [Bradfield's CSI program](), I'm going through an [algos book]() and solving some Leetcode problems that they recommend. Concurrently, I'm also reading [How to Make It Stick]() which recommends, among other things, reflecting on your learnings to help flush them out of working memory and into long-term memory. In that spirit of that, I figured I might as well blog my exploits.
+In preparation for [Bradfield's CSI program](https://bradfieldcs.com/csi), I'm going through an [algos book](https://bradfieldcs.com/algos/) and solving some Leetcode problems that they recommend. Concurrently, I'm also reading [How to Make It Stick](https://www.amazon.com/Make-Stick-Science-Successful-Learning/dp/0674729013) which recommends, among other things, reflecting on your learnings to help flush them out of working memory and into long-term memory. In that spirit of that, I figured I might as well blog my exploits.
 
 # Problem
 Minimum Depth of Binary Tree
