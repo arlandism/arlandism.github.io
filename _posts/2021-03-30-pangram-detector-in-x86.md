@@ -20,7 +20,7 @@ Finally, handling punctuation and spaces ends up being easy as well. After perfo
 
 ## Implementing said scheme
 
-The code is [here](https://github.com/arlandism/x86-fun/blob/master/pangram.asm). I tried to avoid branching instructions where possible and only ended up with 2, so I was happy about that.
+The code is [here](https://github.com/arlandism/x86-fun/blob/6ed5801de8eab2c4436411557948ccfb77ab0cf6/pt1/pangram.asm). I tried to avoid branching instructions where possible and only ended up with 3, so I was happy about that.
 
 I ran into a couple of annoying issues. For example, shift instructions only work with immediate values or things in the `cl` register. And I kept screwing up the hex conversions - the lower 26 bits all flipped is 0x3ffffff, *not* the number 26 encoded in hex: 0x1a. I also hit a `bus error` with a memory fetch that went too far (my first assembly array bounds error!).
 
