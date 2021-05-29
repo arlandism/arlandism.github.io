@@ -6,6 +6,10 @@ date = Date.today.strftime
 input = ARGV.join(' ')
 timestamp = Time.now.strftime('%H:%M:%S')
 
+if input.gsub(" ","") == ""
+  raise "Usage: new_post <title>"
+end
+
 BASE_TEMPLATE = <<-TEMPLATE
 ---
 layout: article
