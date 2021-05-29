@@ -135,6 +135,100 @@ PASS
 ok    github.com/arlandism/benchmark-cgo4.107s
 ```
 
+## Addendum
+
+By the way, if you're curious about the rocksdb wrapper, I'll share it here.
+It does make some assumptions about where rocksdb is installed on your system
+so it won't run without some fiddling, but here it is:
+
+```go
+package main
+
+/*
+#cgo CFLAGS: -I${SRCDIR}/rocksdb/include
+#cgo LDFLAGS: ./librocksdb.6.20.dylib
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include "rocksdb/c.h"
+*/
+import "C"
+import (
+  "fmt"
+  "unsafe"
+)
+
+type DB struct {
+  options *C.rocksdb_options_t
+  conn    *C.rocksdb_t
+  path    *C.char
+  err     *C.char
+}
+
+func NewDB(dbPath string) *DB {
+  options := C.rocksdb_options_create()
+  path := C.CString("./tmp")
+  err := C.CString("")
+  conn := C.rocksdb_open(options, path, &err)
+  if C.GoString(err) != "" {
+    panic(fmt.Sprintf("couldn't open database: %s", C.GoString(err)))
+  }
+  return &DB{
+    options: options,
+    conn:    conn,
+    path:    path,
+    err:     err,
+  }
+}
+
+func (db *DB) TeardownDB() {
+  C.free(unsafe.Pointer(db.options))
+  C.free(unsafe.Pointer(db.conn))
+  C.free(unsafe.Pointer(db.path))
+  C.free(unsafe.Pointer(db.err))
+}
+
+func (db *DB) Get(key string) string {
+  readOptions := C.rocksdb_readoptions_create()
+  cKey := C.CString(key)
+  retLen := C.size_t(0)
+  val := C.rocksdb_get(db.conn, readOptions, cKey, C.ulong(len(key)), &retLen, &db.err)
+  if C.GoString(db.err) != "" {
+    panic(fmt.Sprintf("problem retrieving key: %s", C.GoString(db.err)))
+  }
+  goVal := C.GoString(val) // switch back to Go-land so GC can track
+  defer func() {
+    C.free(unsafe.Pointer(cKey))
+    C.free(unsafe.Pointer(readOptions))
+    C.free(unsafe.Pointer(val))
+  }()
+  return goVal
+}
+
+func (db *DB) Put(key string, value string) {
+  cKey := C.CString(key)
+  cVal := C.CString(value)
+  writeOptions := C.rocksdb_writeoptions_create()
+  defer func() {
+    C.free(unsafe.Pointer(cKey))
+    C.free(unsafe.Pointer(cVal))
+    C.free(unsafe.Pointer(writeOptions))
+  }()
+  C.rocksdb_put(db.conn, writeOptions, cKey, C.ulong(len(key)), cVal, C.ulong(len(value))+1, &db.err)
+  if C.GoString(db.err) != "" {
+    panic(fmt.Sprintf("problem writing key/value: %s", C.GoString(db.err)))
+  }
+}
+
+func main() {
+  db := NewDB("./tmp/database")
+  db.Put("name", "arlandis")
+  fmt.Printf("Retrieved name: %s\n", db.Get("name"))
+  defer db.TeardownDB()
+}
+
+```
+
 ### Footnotes
 1. [Code for this post](https://github.com/arlandism/toy-cgo-benchmarks)
 2. [Cgo function call source](https://golang.org/src/runtime/cgocall.go)
