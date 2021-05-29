@@ -28,7 +28,7 @@ that you could carry a lot of the concepts to other areas (e.g. how Go represent
 ## Biggest Takeaway
 
 So there's some recency bias in this but I found the final week on calling C code pretty interesting. I ended up writing a [Go wrapper around RocksDB](https://github.com/facebook/rocksdb). It was a little
-tricky to get right because of the tedium involved when switching from Go->C->Go. There were problems like, "Well I should conver this value to a Golang type so the runtime
+tricky to get right because of the tedium involved when switching from Go->C->Go. There were problems like, "Well I should convert this value to a Golang type so the runtime
 can track it and the garbage collector can eventually reap it", and "Well, should I store these values in the struct so I can call 'free' later?". So there are some nitty-gritty
 details there. Anyways...the takeaway was on performance. Check out this sample code:
 
@@ -134,3 +134,9 @@ BenchmarkBetterSumNSquare-12      21644619        55.0 ns/op
 PASS
 ok    github.com/arlandism/benchmark-cgo4.107s
 ```
+
+### Footnotes
+1. [Code for this post](https://github.com/arlandism/toy-cgo-benchmarks)
+2. [Cgo function call source](https://golang.org/src/runtime/cgocall.go)
+3. [Dave Cheney on CGo](https://dave.cheney.net/2016/01/18/cgo-is-not-go)
+4. [Bradfield's CSI description](https://bradfieldcs.com/csi/) - includes a description of Advanced Programming
