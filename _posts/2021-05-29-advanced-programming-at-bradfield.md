@@ -7,7 +7,6 @@ tags:
 - programming
 ---
 
-test
 I feel bad that I haven't been able to keep up with blogging. But with work, the baby, workouts, Bradfield, and a couple of side projects, it's been pretty tough to find the time.
 
 Anyways, in the interest of my one reader (hi BT), I'll try to briefly summarize my most recent Bradfield module and an interesting takeaway.
