@@ -21,7 +21,7 @@ tags:
 ---
 TEMPLATE
 filename = "#{date}-#{input.downcase.gsub(/\s+/,'-')}.md"
-puts "Creating new post in the _posts directory: #{filename}"
 File.open(File.join("_posts", filename), "w+") do |f|
   f.write(BASE_TEMPLATE)
 end
+puts "Created new post: #{File.join("_posts", filename)}"
