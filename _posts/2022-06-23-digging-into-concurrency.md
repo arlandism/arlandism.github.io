@@ -1,6 +1,6 @@
 ---
 layout: article
-title: digging-into-concurrency
+title: Digging Into Concurrency
 date: 2022-06-23 15:12:29
 categories: programming
 tags:
